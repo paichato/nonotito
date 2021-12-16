@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { ActivityIndicator, StyleSheet, Text, View } from "react-native";
 import {
   useFonts,
   Poppins_400Regular,
@@ -14,11 +14,15 @@ export default function App() {
     Poppins_600SemiBold,
   });
 
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-    </View>
-  );
+  if (!fontsLoaded) {
+    return <ActivityIndicator color="blue" size="large" />;
+  } else {
+    return (
+      <View style={styles.container}>
+        <Text>Open up App.tsx to start working on your app!</Text>
+      </View>
+    );
+  }
 }
 
 const styles = StyleSheet.create({
