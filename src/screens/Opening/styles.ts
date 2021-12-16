@@ -1,5 +1,5 @@
 import styled from "styled-components/native";
-import { ImageBackground } from "react-native";
+import { ImageBackground, TouchableOpacity, TouchableWithoutFeedback } from "react-native";
 import colors from "../../lib/colors";
 import fonts from "../../lib/fonts";
 import {
@@ -23,13 +23,13 @@ text-align:center;
 `
 export const Txt=styled.Text`
 color:${ ({color})=> color==='white' ? colors.bg_white : color==='blue' ? colors.primary :colors.secondary};
-font-family:${fonts.regular};
+font-family:${ ({bold})=> bold ? fonts.semibold : fonts.regular};
 font-size:${fonts.p};
-text-align:center;
+text-align:${({position})=>position ==='left'? 'left':'center'};
 margin-top:${hp('2%')}px;
 `
 
-export const Input=styled.TextInput`
+export const Input=styled.View`
 /* width:100%; */
 width:80%;
 height:${hp('8%')}px;
@@ -38,7 +38,7 @@ background-color:${colors.bg_white};
 /* margin-top:${hp('2%')}px; */
 `
 
-export const InputContainer=styled.View`
+export const InputContainer=styled(TouchableOpacity)`
 
 flex-direction: row;
 justify-content:center;
@@ -54,4 +54,50 @@ export const SearchImage=styled.Image`
 align-items: center;
 
 
+`
+
+export const RegisterContainer=styled.View`
+width: 100%;
+`
+
+export const AddressHeader=styled.View`
+flex-direction: row;
+width: 100%;
+align-items: center;
+justify-content: space-between;
+height: ${hp('10%')}px;
+margin-bottom:${hp('2%')}px;
+`
+export const IconWrapper=styled.View`
+height: 100%;
+width: 12%;
+align-self: flex-start;
+justify-content:center;
+
+`
+
+export const AddressWrapper=styled.View`
+width: 88%;
+/* height: 100%; */
+text-align: left;
+align-items: center;
+align-self: center;
+`
+
+export const TxtInput=styled.TextInput`
+width: 100%;
+height:${hp('8%')}px;
+background-color:${colors.bg_white};
+border-radius: 10px;
+margin-top:${hp('2%')}px;
+padding-left: 16px;
+font-family:${fonts.regular};
+`
+
+export const RegisterButton=styled(TouchableOpacity)`
+width: 100%;
+height:${hp('8%')}px;
+background-color:${colors.secondary};
+margin-top:${hp('5%')}px;
+border-radius: 10px;
 `
