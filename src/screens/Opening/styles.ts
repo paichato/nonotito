@@ -13,6 +13,7 @@ align-items:center;
 justify-content:center;
 padding-left:${wp('5%')}px;
 padding-right:${wp('5%')}px;
+/* padding-top: ${hp('6%')}px; */
 `
 
 export const BigTitle=styled.Text`
@@ -65,8 +66,8 @@ flex-direction: row;
 width: 100%;
 align-items: center;
 justify-content: space-between;
-height: ${hp('10%')}px;
-margin-bottom:${hp('2%')}px;
+height: ${hp('13%')}px;
+/* margin-bottom:${hp('2%')}px; */
 `
 export const IconWrapper=styled.View`
 height: 100%;

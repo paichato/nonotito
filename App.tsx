@@ -17,11 +17,11 @@ export default function App() {
   });
 
   if (!fontsLoaded) {
-    // return <ActivityIndicator color="blue" size="large" />;
     return <AppLoader />;
   } else {
     return <Routes />;
   }
+  // return(<AppLoader/>)
 }
 
 const styles = StyleSheet.create({
