@@ -7,6 +7,7 @@ import {
   Poppins_600SemiBold,
 } from "@expo-google-fonts/poppins";
 import Routes from "./src/routes";
+import AppLoader from "./src/components/appLoader";
 
 export default function App() {
   let [fontsLoaded] = useFonts({
@@ -16,7 +17,8 @@ export default function App() {
   });
 
   if (!fontsLoaded) {
-    return <ActivityIndicator color="blue" size="large" />;
+    // return <ActivityIndicator color="blue" size="large" />;
+    return <AppLoader />;
   } else {
     return <Routes />;
   }
