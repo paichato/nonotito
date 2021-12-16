@@ -9,8 +9,8 @@ import {
 
 export const Container=styled(ImageBackground)`
 flex:1;
-alignItems:center;
-justifyContent:center;
+align-items:center;
+justify-content:center;
 padding-left:${wp('5%')}px;
 padding-right:${wp('5%')}px;
 `
@@ -22,12 +22,17 @@ font-size:${fonts.h2};
 text-align:center;
 `
 export const Txt=styled.Text`
-color:${colors.bg_white};
+color:${ ({color})=> color==='white' ? colors.bg_white : color==='blue' ? colors.primary :colors.secondary};
 font-family:${fonts.regular};
 font-size:${fonts.p};
 text-align:center;
+margin-top:${hp('2%')}px;
 `
 
 export const Input=styled.TextInput`
-
+width:100%;
+height:${hp('8%')}px;
+background-color:${colors.bg_white};
+border-radius: 10px;
+margin-top:${hp('2%')}px;
 `
