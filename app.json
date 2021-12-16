@@ -2,6 +2,22 @@
   "name": "nonotito",
   "displayName": "nonotito",
   "expo": {
+    "packagerOpts": {
+      "config": "metro.config.js",
+      "sourceExts": [
+        "expo.ts",
+        "expo.tsx",
+        "expo.js",
+        "expo.jsx",
+        "ts",
+        "tsx",
+        "js",
+        "jsx",
+        "json",
+        "wasm",
+        "svg"
+      ]
+    },
     "name": "nonotito",
     "slug": "nonotito",
     "version": "1.0.0",

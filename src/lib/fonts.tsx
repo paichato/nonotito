@@ -12,7 +12,7 @@ import {
 export default {
   regular: "Poppins_400Regular",
   medium: "Poppins_500Medium",
-  semibold: "Poppins_600SemiBold,",
+  semibold: "Poppins_600SemiBold",
   p: hp("2%"),
   txt: hp("2.5%"),
   h1: hp("3.5%"),
