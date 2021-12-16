@@ -30,9 +30,28 @@ margin-top:${hp('2%')}px;
 `
 
 export const Input=styled.TextInput`
-width:100%;
+/* width:100%; */
+width:80%;
 height:${hp('8%')}px;
 background-color:${colors.bg_white};
+/* border-radius: 10px; */
+/* margin-top:${hp('2%')}px; */
+`
+
+export const InputContainer=styled.View`
+
+flex-direction: row;
+justify-content:center;
+align-items: center;
+background-color:${colors.bg_white};
+height:${hp('8%')}px;
 border-radius: 10px;
 margin-top:${hp('2%')}px;
+width:100%;
+`
+
+export const SearchImage=styled.Image`
+align-items: center;
+
+
 `
