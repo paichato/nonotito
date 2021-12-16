@@ -6,6 +6,7 @@ import {
   Poppins_500Medium,
   Poppins_600SemiBold,
 } from "@expo-google-fonts/poppins";
+import Routes from "./src/routes";
 
 export default function App() {
   let [fontsLoaded] = useFonts({
@@ -17,11 +18,7 @@ export default function App() {
   if (!fontsLoaded) {
     return <ActivityIndicator color="blue" size="large" />;
   } else {
-    return (
-      <View style={styles.container}>
-        <Text>Open up App.tsx to start working on your app!</Text>
-      </View>
-    );
+    return <Routes />;
   }
 }
 
