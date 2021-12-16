@@ -66,7 +66,7 @@ flex-direction: row;
 width: 100%;
 align-items: center;
 justify-content: space-between;
-height: ${hp('13%')}px;
+height: ${hp('14.5%')}px;
 /* margin-bottom:${hp('2%')}px; */
 `
 export const IconWrapper=styled.View`

@@ -24,9 +24,22 @@ import SearchIcon from "../../assets/Search.svg";
 import colors from "../../lib/colors";
 import * as Animatable from "react-native-animatable";
 import Pin from "../../assets/location-pin.svg";
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from "react-native-responsive-screen";
 
 export default function Opening() {
   const [clicked, setClicked] = useState(false);
+  const [focus, setFocus] = useState(false);
+
+  const handleFocus = () => {
+    setFocus(true);
+  };
+
+  const handleUnFocus = () => {
+    setFocus(false);
+  };
 
   const handleCEP = () => {
     console.log("here");
@@ -37,12 +50,14 @@ export default function Opening() {
   return (
     <Container source={require("../../assets/bg.png")}>
       <KeyboardAvoidingView
+        // enabled={false}
+        keyboardVerticalOffset={Platform.OS === "ios" ? 10 : 0}
         style={{
           width: "100%",
           alignItems: "center",
           justifyContent: "center",
         }}
-        behavior={Platform.OS === "ios" ? "padding" : "padding"}
+        behavior={Platform.OS === "ios" ? "padding" : "height"}
       >
         <Animatable.View
           style={{
@@ -52,7 +67,7 @@ export default function Opening() {
           }}
           animation={!clicked ? "pulse" : "slideInUp"}
         >
-          <Logo />
+          <>{!focus && <Logo />}</>
         </Animatable.View>
 
         {!clicked && (
@@ -91,27 +106,29 @@ export default function Opening() {
 
         {clicked && (
           <RegisterContainer>
-            <Animatable.View animation="fadeInDown">
-              <AddressHeader>
-                <IconWrapper>
-                  <Pin />
-                </IconWrapper>
-
-                <AddressWrapper>
-                  <Txt color="white" position="left">
-                    Rua Três de Maio, 50 - Jardim Olavo Bilac São Bernardo do
-                    Campo - SP 09725-810 - Brazil
-                  </Txt>
-                </AddressWrapper>
-              </AddressHeader>
-            </Animatable.View>
+            {!focus && (
+              <Animatable.View animation="fadeInDown">
+                <AddressHeader>
+                  <IconWrapper>
+                    <Pin />
+                  </IconWrapper>
+                  <></>
+                  <AddressWrapper>
+                    <Txt color="white" position="left">
+                      Rua Três de Maio, 50 - Jardim Olavo Bilac São Bernardo do
+                      Campo - SP 09725-810 - Brazil
+                    </Txt>
+                  </AddressWrapper>
+                </AddressHeader>
+              </Animatable.View>
+            )}
             <Animatable.View useNativeDriver animation="fadeInLeft" delay={100}>
               <Txt position="left" color="white">
                 Endereço
               </Txt>
             </Animatable.View>
             <Animatable.View useNativeDriver animation="zoomIn" delay={100}>
-              <TxtInput />
+              <TxtInput onFocus={handleFocus} onBlur={handleUnFocus} />
             </Animatable.View>
             <Animatable.View useNativeDriver animation="fadeInLeft" delay={300}>
               <Txt position="left" color="white">
@@ -119,7 +136,7 @@ export default function Opening() {
               </Txt>
             </Animatable.View>
             <Animatable.View useNativeDriver animation="zoomIn" delay={300}>
-              <TxtInput />
+              <TxtInput onFocus={handleFocus} onBlur={handleUnFocus} />
             </Animatable.View>
             <AddressHeader>
               <View style={{ width: "48%", marginTop: 30 }}>
@@ -133,7 +150,7 @@ export default function Opening() {
                   </Txt>
                 </Animatable.View>
                 <Animatable.View useNativeDriver animation="zoomIn" delay={500}>
-                  <TxtInput />
+                  <TxtInput onFocus={handleFocus} onBlur={handleUnFocus} />
                 </Animatable.View>
               </View>
               <View style={{ width: "48%", marginTop: 30 }}>
@@ -147,17 +164,20 @@ export default function Opening() {
                   </Txt>
                 </Animatable.View>
                 <Animatable.View useNativeDriver animation="zoomIn" delay={700}>
-                  <TxtInput />
+                  <TxtInput onFocus={handleFocus} onBlur={handleUnFocus} />
                 </Animatable.View>
               </View>
             </AddressHeader>
             <>
-            <Animatable.View useNativeDriver animation="slideInUp" delay={1000}>
-              
-              <RegisterButton>
-                <Txt color="white">Fazer Pedido</Txt>
-              </RegisterButton>
-            </Animatable.View>
+              <Animatable.View
+                useNativeDriver
+                animation="slideInUp"
+                delay={1000}
+              >
+                <RegisterButton>
+                  <Txt color="white">Fazer Pedido</Txt>
+                </RegisterButton>
+              </Animatable.View>
             </>
           </RegisterContainer>
         )}
