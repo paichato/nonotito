@@ -3,6 +3,7 @@ import { View, Text } from "react-native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Opening from "../screens/Opening";
 import Register from "../screens/Register";
+import AppRoutes from "./app.routes";
 
 const { Screen, Navigator } = createNativeStackNavigator();
 
@@ -11,6 +12,7 @@ export default function StackRoutes() {
     <Navigator screenOptions={{ headerShown: false }}>
       <Screen name="Opening" component={Opening} />
       <Screen name="Register" component={Register} />
+      <Screen name="Home" component={AppRoutes} />
     </Navigator>
   );
 }
