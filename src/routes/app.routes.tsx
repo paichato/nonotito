@@ -14,6 +14,7 @@ import Home from "../screens/Home";
 import Search from "../screens/Search";
 import Requests from "../screens/Requests";
 import Profile from "../screens/Profile";
+import fonts from "../lib/fonts";
 
 const { Screen, Navigator } = createBottomTabNavigator();
 
@@ -23,21 +24,37 @@ export default function AppRoutes() {
       screenOptions={{
         headerShown: false,
         // tabBarShowLabel: false,
-        tabBarInactiveBackgroundColor: colors.bg_white,
-        tabBarActiveBackgroundColor: colors.bg_white,
+        tabBarInactiveBackgroundColor: colors.grad1,
+        tabBarActiveBackgroundColor: colors.grad1,
         tabBarHideOnKeyboard: true,
         tabBarStyle: {
           borderWidth: 0,
           height: hp(10),
           padding: 0,
+          elevation: 0,
+
           //   borderTopColor: colors.yellow,
         },
+        tabBarLabelStyle: {
+          fontFamily: fonts.regular,
+        //   paddingBottom: 10,
+          fontSize: fonts.p,
+          //   color: "red",
+        },
+        tabBarItemStyle: { paddingVertical: hp(1.5) },
       }}
       tabBarOptions={{
         activeTintColor: colors.secondary,
 
         inactiveTintColor: colors.unselected,
         labelPosition: "bellow-icon",
+        // tabBarLabelStyle: {
+        //   fontFamily: fonts.regular,
+        //   padding: 0,
+        //   fontSize: fonts.h1,
+        //   color: "red",
+        // },
+        
         style: {
           paddingVertical: Platform.OS === "ios" ? 20 : 0,
           height: 88,
@@ -59,7 +76,7 @@ export default function AppRoutes() {
         component={Search}
         options={{
           tabBarIcon: ({ size, color }) => (
-            <SearchIcon size={size} stroke={color}  />
+            <SearchIcon size={size} stroke={color} />
           ),
         }}
       />
