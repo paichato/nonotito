@@ -31,7 +31,7 @@ import {
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
 
-export default function Opening() {
+export default function Opening({ navigation }) {
   const [clicked, setClicked] = useState(false);
   const [focus, setFocus] = useState(false);
 
@@ -48,6 +48,10 @@ export default function Opening() {
     console.log("here");
 
     setClicked(true);
+  };
+
+  const handleConfirm = () => {
+    navigation.navigate("Home");
   };
 
   return (
@@ -209,7 +213,7 @@ export default function Opening() {
                   animation="slideInUp"
                   delay={1000}
                 >
-                  <RegisterButton>
+                  <RegisterButton onPress={handleConfirm}>
                     <Txt color="white">Fazer Pedido</Txt>
                   </RegisterButton>
                 </Animatable.View>

@@ -22,7 +22,7 @@ export default function AppRoutes() {
     <Navigator
       screenOptions={{
         headerShown: false,
-        tabBarShowLabel: false,
+        // tabBarShowLabel: false,
         tabBarInactiveBackgroundColor: colors.bg_white,
         tabBarActiveBackgroundColor: colors.bg_white,
         tabBarHideOnKeyboard: true,
@@ -37,7 +37,7 @@ export default function AppRoutes() {
         activeTintColor: colors.secondary,
 
         inactiveTintColor: colors.unselected,
-        // labelPosition: "beside-icon",
+        labelPosition: "bellow-icon",
         style: {
           paddingVertical: Platform.OS === "ios" ? 20 : 0,
           height: 88,
@@ -50,7 +50,7 @@ export default function AppRoutes() {
         component={Home}
         options={{
           tabBarIcon: ({ size, color }) => (
-            <HomeIcon size={size} color={color} />
+            <HomeIcon stroke={color} size={size} color={color} />
           ),
         }}
       />
@@ -59,7 +59,7 @@ export default function AppRoutes() {
         component={Search}
         options={{
           tabBarIcon: ({ size, color }) => (
-            <SearchIcon size={size} color={color} />
+            <SearchIcon size={size} stroke={color}  />
           ),
         }}
       />
@@ -68,7 +68,7 @@ export default function AppRoutes() {
         component={Requests}
         options={{
           tabBarIcon: ({ size, color }) => (
-            <RequestsIcon size={size} color={color} />
+            <RequestsIcon size={size} stroke={color} />
           ),
         }}
       />
@@ -77,7 +77,7 @@ export default function AppRoutes() {
         component={Profile}
         options={{
           tabBarIcon: ({ size, color }) => (
-            <ProfileIcon size={size} color={color} />
+            <ProfileIcon size={size} stroke={color} />
           ),
         }}
       />
