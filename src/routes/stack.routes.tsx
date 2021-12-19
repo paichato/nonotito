@@ -9,10 +9,10 @@ const { Screen, Navigator } = createNativeStackNavigator();
 
 export default function StackRoutes() {
   return (
-    <Navigator screenOptions={{ headerShown: false }}>
+    <Navigator screenOptions={{ headerShown: false,animation: 'fade', }}>
       <Screen name="Opening" component={Opening} />
       <Screen name="Register" component={Register} />
-      <Screen name="Home" component={AppRoutes} />
+      <Screen name="Home-Tab" component={AppRoutes} />
     </Navigator>
   );
 }

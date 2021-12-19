@@ -25,7 +25,7 @@ text-align:center;
 export const Txt=styled.Text`
 color:${ ({color})=> color==='white' ? colors.bg_white : color==='blue' ? colors.primary :color==='black'?colors.black : color==='gray'? colors.unselected : colors.secondary};
 font-family:${ ({bold,medium})=> bold ? fonts.semibold : medium ? fonts.medium : fonts.regular};
-font-size:${({size})=> size==='h1'? fonts.h1 : size==='h2'? fonts.h2 : fonts.p};
+font-size:${({size})=> size==='h1'? fonts.h1 : size==='h2'? fonts.h2 : fonts.p}px;
 text-align:${({position})=>position ==='left'? 'left':'center'};
 margin-top:${({margin})=> margin ? 0 : hp('2%')}px;
 `

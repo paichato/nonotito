@@ -43,7 +43,7 @@ export const Banner=styled.TouchableOpacity`
 /* height:${hp('20%')}px; */
 height: 60%;
 width: 100%;
-background-color:${colors.blue};
+background-color:#1D2647;
 border-radius: 10px;
 align-items: center;
 justify-content: center;
@@ -115,7 +115,7 @@ export const PizzaAddButton=styled(TouchableOpacity)`
 background-color: ${colors.unselected_light};
 border-radius: 25px;
 width: 30%;
-height: 30%;
+height: 40%;
 flex-direction: row;
 align-items: center;
 justify-content:space-around;

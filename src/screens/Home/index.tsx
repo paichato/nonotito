@@ -30,6 +30,7 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 import colors from "../../lib/colors";
 import FilterIcon from "../../assets/filter.svg";
 import PlusIcon from "../../assets/plus.svg";
+import * as Animatable from "react-native-animatable";
 
 export default function Home() {
   const names = [
@@ -72,31 +73,37 @@ export default function Home() {
 
   const CatItem = ({ id }) => {
     return (
-      <CategoryWrapper
-        onPress={() => handleCategorySelect(id)}
-        selected={selected.id === id}
-      >
-        {id === 0 ? (
-          <PizzaIcon
-            fill={selected.id === id ? "#C49753" : colors.unselected}
-          />
-        ) : id === 1 ? (
-          selected.id === id ? (
-            <VegIconYellow />
-          ) : (
-            <VegIcon fill="#C49753" />
-          )
-        ) : id === 2 ? (
-          selected.id === id ? (
-            <BebidasIconYellow />
-          ) : (
-            <BebidasIcon fill="#C49753" />
-          )
-        ) : null}
-        <Txt margin bold color={selected.id === id ? colors.secondary : "gray"}>
-          {names[id].name}
-        </Txt>
-      </CategoryWrapper>
+      <Animatable.View duration={150} animation="lightSpeedIn">
+        <CategoryWrapper
+          onPress={() => handleCategorySelect(id)}
+          selected={selected.id === id}
+        >
+          {id === 0 ? (
+            <PizzaIcon
+              fill={selected.id === id ? "#C49753" : colors.unselected}
+            />
+          ) : id === 1 ? (
+            selected.id === id ? (
+              <VegIconYellow />
+            ) : (
+              <VegIcon fill="#C49753" />
+            )
+          ) : id === 2 ? (
+            selected.id === id ? (
+              <BebidasIconYellow />
+            ) : (
+              <BebidasIcon fill="#C49753" />
+            )
+          ) : null}
+          <Txt
+            margin
+            bold
+            color={selected.id === id ? colors.secondary : "gray"}
+          >
+            {names[id].name}
+          </Txt>
+        </CategoryWrapper>
+      </Animatable.View>
     );
   };
 
@@ -105,35 +112,45 @@ export default function Home() {
   };
 
   return (
-    <Container>
-      <HeaderWrapper>
-        <Header>
-          <Pin />
-          <HeaderCenter>
-            <Txt margin bold size="h2" color="black" position="left">
-              Casa
-            </Txt>
-            <Txt margin bold color="gray" position="left">
-              242 ST Marks Eve, Finland{" "}
-            </Txt>
-          </HeaderCenter>
-          <ButtonWrapper Icon={<HeartIcon />} />
-        </Header>
-        <Banner>
-          <BannerImg width={"100%"} height={"100%"} />
-        </Banner>
-      </HeaderWrapper>
+    <Animatable.View useNativeDriver style={{ flex: 1 }} animation="fadeInUp">
+      <Container>
+        <HeaderWrapper>
+          <Header>
+            <Pin />
+            <HeaderCenter>
+              <Txt margin bold size="h2" color="black" position="left">
+                Casa
+              </Txt>
+              <Txt margin bold color="gray" position="left">
+                242 ST Marks Eve, Finland{" "}
+              </Txt>
+            </HeaderCenter>
+            <ButtonWrapper Icon={<HeartIcon />} />
+          </Header>
 
-      <CategoriasTitleWrapper>
-        <Txt color="black" size="h1" bold>
-          Categorias
-        </Txt>
-        <TouchableOpacity onPress={() => console.log("hello")}>
-          <Txt medium>Veja tudo</Txt>
-        </TouchableOpacity>
-      </CategoriasTitleWrapper>
-      <Spacer/>
-      {/* <CategoryContainer
+          <Banner activeOpacity={0.99}>
+            <Animatable.View
+            useNativeDriver
+              duration={300}
+              delay={500}
+              style={{ flex: 1, width: "100%" }}
+              animation="fadeIn"
+            >
+              <BannerImg width={"100%"} height={"100%"} />
+            </Animatable.View>
+          </Banner>
+        </HeaderWrapper>
+
+        <CategoriasTitleWrapper>
+          <Txt color="black" size="h1" bold>
+            Categorias
+          </Txt>
+          <TouchableOpacity onPress={() => console.log("hello")}>
+            <Txt medium>Veja tudo</Txt>
+          </TouchableOpacity>
+        </CategoriasTitleWrapper>
+        <Spacer />
+        {/* <CategoryContainer
         data={names}
         horizontal
         contentSyle
@@ -146,8 +163,8 @@ export default function Home() {
           </CategoryWrapper>
         )}
       /> */}
-      <CategoryContainer>
-        {/* <CategoryWrapper selected>
+        <CategoryContainer>
+          {/* <CategoryWrapper selected>
         <PizzaIcon  fill="#C49753" />
         <Txt margin bold >{names[0].name}</Txt>
       </CategoryWrapper>
@@ -159,38 +176,49 @@ export default function Home() {
         <BebidasIcon />
         <Txt margin bold >{names[2].name}</Txt>
       </CategoryWrapper> */}
-        {names.map((item) => (
-          <CatItem id={item.id} />
-        ))}
-      </CategoryContainer>
+          {names.map((item) => (
+            <CatItem id={item.id} />
+          ))}
+        </CategoryContainer>
 
-      <CategoriasTitleWrapper>
-        <Txt color="black" size="h2" bold>
-          Mais populares
-        </Txt>
-        <TouchableOpacity onPress={() => console.log("hello")}>
-          <FilterIcon />
-        </TouchableOpacity>
-      </CategoriasTitleWrapper>
-      <Spacer/>
-      <PizzaContainer
-        data={ selected.id===0 ? popularPizzas :popularRefris}
-        renderItem={({ item }) => {
-          return (
-            <PizzaWrapper key={item}>
-              <PizzaImage resizeMode="cover" source={item.img} />
-              <PizzaDetails>
-                <Txt position='left' margin color='blue' bold >{item.name}</Txt>
-                <Txt position='left' margin color='gray' bold >R$ {item.price}</Txt>
-              </PizzaDetails>
-              <PizzaAddButton>
-                <Txt margin color='blue' bold >Add</Txt>
-                <PlusIcon />
-              </PizzaAddButton>
-            </PizzaWrapper>
-          );
-        }}
-      />
-    </Container>
+        <Animatable.View useNativeDriver animation="fadeInUp">
+          <CategoriasTitleWrapper>
+            <Txt color="black" size="h2" bold>
+              Mais populares
+            </Txt>
+            <TouchableOpacity onPress={() => console.log("hello")}>
+              <FilterIcon />
+            </TouchableOpacity>
+          </CategoriasTitleWrapper>
+        </Animatable.View>
+        <Spacer />
+        <PizzaContainer
+          data={selected.id === 0 ? popularPizzas : popularRefris}
+          renderItem={({ item, index }) => {
+            return (
+              <Animatable.View useNativeDriver delay={index * 300} animation="fadeInRight">
+                <PizzaWrapper key={item}>
+                  <PizzaImage resizeMode="cover" source={item.img} />
+                  <PizzaDetails>
+                    <Txt position="left" margin color="blue" bold>
+                      {item.name}
+                    </Txt>
+                    <Txt position="left" margin color="gray" bold>
+                      R$ {item.price}
+                    </Txt>
+                  </PizzaDetails>
+                  <PizzaAddButton>
+                    <Txt margin color="blue" bold>
+                      Add
+                    </Txt>
+                    <PlusIcon />
+                  </PizzaAddButton>
+                </PizzaWrapper>
+              </Animatable.View>
+            );
+          }}
+        />
+      </Container>
+    </Animatable.View>
   );
 }
