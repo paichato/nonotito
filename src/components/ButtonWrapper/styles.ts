@@ -7,10 +7,10 @@ import {
 import colors from "../../lib/colors";
 
 export const Container=styled(TouchableOpacity)`
-width: ${wp('8%')}px;
-height: ${wp('8%')}px;
+width: ${hp('8%')}px;
+height: ${hp('8%')}px;
 border-radius: 10px;
-background-color: ${colors.unselected};
+background-color: ${colors.unselected_light};
 align-items: center;
 justify-content:center;
 `

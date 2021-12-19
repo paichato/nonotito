@@ -8,6 +8,7 @@ import {
 } from "@expo-google-fonts/poppins";
 import Routes from "./src/routes";
 import AppLoader from "./src/components/appLoader";
+import Home from "./src/screens/Home";
 
 export default function App() {
   let [fontsLoaded] = useFonts({
@@ -19,7 +20,8 @@ export default function App() {
   if (!fontsLoaded) {
     return <AppLoader />;
   } else {
-    return <Routes />;
+    // return <Routes />;
+    return <Home />;
   }
   // return(<AppLoader/>)
 }

@@ -23,11 +23,11 @@ font-size:${fonts.h2};
 text-align:center;
 `
 export const Txt=styled.Text`
-color:${ ({color})=> color==='white' ? colors.bg_white : color==='blue' ? colors.primary :colors.secondary};
+color:${ ({color})=> color==='white' ? colors.bg_white : color==='blue' ? colors.primary :color==='black'?colors.black : color==='gray'? colors.unselected : colors.secondary};
 font-family:${ ({bold})=> bold ? fonts.semibold : fonts.regular};
-font-size:${fonts.p};
+font-size:${({size})=> size==='h1'? fonts.h1 : size==='h2'? fonts.h2 : fonts.p};
 text-align:${({position})=>position ==='left'? 'left':'center'};
-margin-top:${hp('2%')}px;
+margin-top:${({margin})=> margin ? 0 : hp('2%')}px;
 `
 
 export const Input=styled.View`
