@@ -85,6 +85,9 @@ padding: 10px;
 
 export const PizzaContainer=styled(FlatList)`
 flex:1;
+/* padding-bottom: 20px; */
+/* padding-top: 20px; */
+min-height: 100%;
 `
 
 export const PizzaWrapper=styled.TouchableOpacity`
@@ -95,7 +98,8 @@ border-radius:10px;
 flex-direction: row;
 align-items: center;
 justify-content:space-between;
-
+margin-bottom: ${hp('1.5%')}px;
+padding:0px 5px;
 `
 export const PizzaImage=styled.Image`
 width: 25%;
@@ -116,6 +120,11 @@ flex-direction: row;
 align-items: center;
 justify-content:space-around;
 padding: 10px;
+`
+
+export const Spacer=styled.View`
+width: ${wp('100%')}px;
+height: ${ ({h})=> h ? hp(`${h}`) : hp('1%')}px;
 `
 
 

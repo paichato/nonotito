@@ -20,8 +20,8 @@ export default function App() {
   if (!fontsLoaded) {
     return <AppLoader />;
   } else {
-    // return <Routes />;
-    return <Home />;
+    return <Routes />;
+    // return <Home />;
   }
   // return(<AppLoader/>)
 }

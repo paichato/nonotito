@@ -14,6 +14,7 @@ import {
   PizzaDetails,
   PizzaImage,
   PizzaWrapper,
+  Spacer,
 } from "./styles";
 import Pin from "../../assets/location-pin.svg";
 import { Txt } from "../Opening/styles";
@@ -51,6 +52,22 @@ export default function Home() {
       img: require("../../assets/pizzas/pizza1.png"),
     },
   ];
+
+  const popularRefris = [
+    {
+      id: 0,
+      name: "H2O Limão",
+      price: "5,50",
+      img: require("../../assets/refris/refri1.png"),
+    },
+    {
+      id: 1,
+      name: "Guaraná",
+      price: "10,00",
+      img: require("../../assets/refris/refri4.png"),
+    },
+  ];
+
   const [selected, setSelected] = useState({ id: 0, selected: true });
 
   const CatItem = ({ id }) => {
@@ -115,6 +132,7 @@ export default function Home() {
           <Txt medium>Veja tudo</Txt>
         </TouchableOpacity>
       </CategoriasTitleWrapper>
+      <Spacer/>
       {/* <CategoryContainer
         data={names}
         horizontal
@@ -154,15 +172,16 @@ export default function Home() {
           <FilterIcon />
         </TouchableOpacity>
       </CategoriasTitleWrapper>
+      <Spacer/>
       <PizzaContainer
-        data={popularPizzas}
+        data={ selected.id===0 ? popularPizzas :popularRefris}
         renderItem={({ item }) => {
           return (
             <PizzaWrapper key={item}>
               <PizzaImage resizeMode="cover" source={item.img} />
               <PizzaDetails>
-                <Txt margin color='blue' bold >{item.name}</Txt>
-                <Txt margin color='gray' bold >R$ {item.price}</Txt>
+                <Txt position='left' margin color='blue' bold >{item.name}</Txt>
+                <Txt position='left' margin color='gray' bold >R$ {item.price}</Txt>
               </PizzaDetails>
               <PizzaAddButton>
                 <Txt margin color='blue' bold >Add</Txt>
