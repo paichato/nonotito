@@ -9,6 +9,11 @@ import {
   Header,
   HeaderCenter,
   HeaderWrapper,
+  PizzaAddButton,
+  PizzaContainer,
+  PizzaDetails,
+  PizzaImage,
+  PizzaWrapper,
 } from "./styles";
 import Pin from "../../assets/location-pin.svg";
 import { Txt } from "../Opening/styles";
@@ -22,12 +27,29 @@ import BebidasIconYellow from "../../assets/bebidas-yellow.svg";
 import BebidasIcon from "../../assets/bebidas.svg";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import colors from "../../lib/colors";
+import FilterIcon from "../../assets/filter.svg";
+import PlusIcon from "../../assets/plus.svg";
 
 export default function Home() {
   const names = [
     { id: 0, name: "Pizzas" },
     { id: 1, name: "Vegs" },
     { id: 2, name: "Bebidas" },
+  ];
+
+  const popularPizzas = [
+    {
+      id: 0,
+      name: "Marguerita",
+      price: "47,50",
+      img: require("../../assets/pizzas/pizza.png"),
+    },
+    {
+      id: 1,
+      name: "Milho",
+      price: "30,00",
+      img: require("../../assets/pizzas/pizza1.png"),
+    },
   ];
   const [selected, setSelected] = useState({ id: 0, selected: true });
 
@@ -47,8 +69,12 @@ export default function Home() {
           ) : (
             <VegIcon fill="#C49753" />
           )
-        ) : id === 2 ? selected.id === id ? <BebidasIconYellow/> : (
-          <BebidasIcon fill="#C49753" />
+        ) : id === 2 ? (
+          selected.id === id ? (
+            <BebidasIconYellow />
+          ) : (
+            <BebidasIcon fill="#C49753" />
+          )
         ) : null}
         <Txt margin bold color={selected.id === id ? colors.secondary : "gray"}>
           {names[id].name}
@@ -119,6 +145,33 @@ export default function Home() {
           <CatItem id={item.id} />
         ))}
       </CategoryContainer>
+
+      <CategoriasTitleWrapper>
+        <Txt color="black" size="h2" bold>
+          Mais populares
+        </Txt>
+        <TouchableOpacity onPress={() => console.log("hello")}>
+          <FilterIcon />
+        </TouchableOpacity>
+      </CategoriasTitleWrapper>
+      <PizzaContainer
+        data={popularPizzas}
+        renderItem={({ item }) => {
+          return (
+            <PizzaWrapper key={item}>
+              <PizzaImage resizeMode="cover" source={item.img} />
+              <PizzaDetails>
+                <Txt margin color='blue' bold >{item.name}</Txt>
+                <Txt margin color='gray' bold >R$ {item.price}</Txt>
+              </PizzaDetails>
+              <PizzaAddButton>
+                <Txt margin color='blue' bold >Add</Txt>
+                <PlusIcon />
+              </PizzaAddButton>
+            </PizzaWrapper>
+          );
+        }}
+      />
     </Container>
   );
 }

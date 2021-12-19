@@ -83,4 +83,39 @@ padding: 10px;
 /* padding: 20px; */
 `
 
+export const PizzaContainer=styled(FlatList)`
+flex:1;
+`
+
+export const PizzaWrapper=styled.TouchableOpacity`
+width: 100%;
+height: ${hp('13%')}px;
+background-color:${colors.grad1};
+border-radius:10px;
+flex-direction: row;
+align-items: center;
+justify-content:space-between;
+
+`
+export const PizzaImage=styled.Image`
+width: 25%;
+border-radius:16px;
+
+`
+
+export const PizzaDetails=styled.View`
+width: 30%;
+`
+
+export const PizzaAddButton=styled(TouchableOpacity)`
+background-color: ${colors.unselected_light};
+border-radius: 25px;
+width: 30%;
+height: 30%;
+flex-direction: row;
+align-items: center;
+justify-content:space-around;
+padding: 10px;
+`
+
 
