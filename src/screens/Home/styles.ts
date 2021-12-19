@@ -4,6 +4,7 @@ import {
     heightPercentageToDP as hp,
   } from "react-native-responsive-screen";
 import colors from "../../lib/colors";
+import { FlatList, TouchableOpacity } from "react-native";
 
 export const Container=styled.View`
 flex:1;
@@ -47,3 +48,39 @@ border-radius: 10px;
 align-items: center;
 justify-content: center;
 `
+
+export const CategoriasTitleWrapper=styled.View`
+flex-direction: row;
+/* height:${hp('8%')}px; */
+width: 100%;
+align-items: center;
+justify-content:space-between;
+/* height:30%; */
+/* padding: 0px 10px; */
+`
+
+// export const CategoryContainer=styled(FlatList)`
+// flex:1;
+// `
+
+export const CategoryContainer=styled.View`
+/* flex:1; */
+flex-direction: row;
+align-items: center;
+justify-content:space-between;
+`
+
+export const CategoryWrapper=styled(TouchableOpacity)`
+height: ${hp('13%')}px;
+width: ${hp('13%')}px;
+background-color:${({selected})=>selected ? colors.blue :colors.unselected_light};
+align-items: center;
+justify-content:center;
+border-radius: 10px;
+padding: 10px;
+/* padding-top:20px; */
+/* padding-bottom:20px; */
+/* padding: 20px; */
+`
+
+
