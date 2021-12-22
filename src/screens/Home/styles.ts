@@ -124,7 +124,7 @@ padding: 10px;
 
 export const Spacer=styled.View`
 width: ${wp('100%')}px;
-height: ${ ({h})=> h ? hp(`${h}`) : hp('1%')}px;
+height: ${ ({h})=> h ? hp(`${h}%`) : hp('1%')}px;
 `
 
 
