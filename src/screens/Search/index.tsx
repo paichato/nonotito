@@ -3,7 +3,17 @@ import { View, Text, TouchableOpacity } from "react-native";
 import { Container, Input, InputContainer } from "./styles";
 import SearchIcon from "../../assets/Search.svg";
 import colors from "../../lib/colors";
-import { CategoriasTitleWrapper, CategoryContainer, CategoryWrapper, PizzaAddButton, PizzaContainer, PizzaDetails, PizzaImage, PizzaWrapper, Spacer } from "../Home/styles";
+import {
+  CategoriasTitleWrapper,
+  CategoryContainer,
+  CategoryWrapper,
+  PizzaAddButton,
+  PizzaContainer,
+  PizzaDetails,
+  PizzaImage,
+  PizzaWrapper,
+  Spacer,
+} from "../Home/styles";
 import { Txt } from "../Opening/styles";
 
 import BannerImg from "../../assets/frete-img.svg";
@@ -18,7 +28,6 @@ import PlusIcon from "../../assets/plus.svg";
 import * as Animatable from "react-native-animatable";
 
 export default function Search() {
-
   const names = [
     { id: 0, name: "Pizzas" },
     { id: 1, name: "Vegs" },
@@ -38,91 +47,91 @@ export default function Search() {
       price: "30,00",
       img: require("../../assets/pizzas/pizza1.png"),
     },
-    
+
     {
       id: 2,
       name: "Apresuntada",
       price: "30,00",
       img: require("../../assets/pizzas/pizza3.png"),
     },
-    
+
     {
       id: 3,
       name: "Bacon",
       price: "30,00",
       img: require("../../assets/pizzas/pizza1.png"),
     },
-    
+
     {
       id: 4,
       name: "Calabresa",
       price: "30,00",
       img: require("../../assets/pizzas/pizza3.png"),
     },
-    
+
     {
       id: 5,
       name: "Crocante",
       price: "30,00",
       img: require("../../assets/pizzas/pizza.png"),
     },
-    
+
     {
       id: 6,
       name: "Escarola",
       price: "37,50",
       img: require("../../assets/pizzas/pizza3.png"),
     },
-    
+
     {
       id: 7,
       name: "Frango",
       price: "30,00",
       img: require("../../assets/pizzas/pizza1.png"),
     },
-    
+
     {
       id: 8,
       name: "Fran c/Catupiry",
       price: "37,50",
       img: require("../../assets/pizzas/pizza3.png"),
     },
-    
+
     {
       id: 9,
       name: "Fran-milho",
       price: "30,00",
       img: require("../../assets/pizzas/pizza1.png"),
     },
-    
+
     {
       id: 10,
       name: "Marguerita",
       price: "37,50",
       img: require("../../assets/pizzas/pizza.png"),
     },
-    
+
     {
       id: 11,
       name: "Milho",
       price: "30,00",
       img: require("../../assets/pizzas/pizza1.png"),
     },
-    
+
     {
       id: 12,
       name: "Mussarela",
       price: "37,50",
       img: require("../../assets/pizzas/pizza3.png"),
     },
-    
+
     {
       id: 13,
       name: "Napolitana",
       price: "30,00",
       img: require("../../assets/pizzas/pizza1.png"),
     },
-    
+
     {
       id: 14,
       name: "Tradicional",
@@ -140,12 +149,29 @@ export default function Search() {
     },
     {
       id: 1,
+      name: "H2O Limoneto",
+      price: "5,50",
+      img: require("../../assets/refris/refri2.png"),
+    },
+    {
+      id: 2,
+      name: "Coca-cola",
+      price: "5,50",
+      img: require("../../assets/refris/refri3.png"),
+    },
+    {
+      id: 3,
       name: "Guaraná",
       price: "10,00",
       img: require("../../assets/refris/refri4.png"),
     },
+    {
+      id: 4,
+      name: "Pepsi",
+      price: "10,00",
+      img: require("../../assets/refris/refri5.png"),
+    },
   ];
-
 
   const [selected, setSelected] = useState({ id: 0, selected: true });
 
@@ -205,27 +231,29 @@ export default function Search() {
         </>
       </InputContainer>
       <CategoriasTitleWrapper>
-          <Txt color="black" size="h1" bold>
-            Categorias
-          </Txt>
-          <TouchableOpacity onPress={() => console.log("hello")}>
-            <Txt medium>Veja tudo</Txt>
-          </TouchableOpacity>
-        </CategoriasTitleWrapper>
-        <Spacer />
-        <CategoryContainer>
-         
-          {names.map((item) => (
-            <CatItem id={item.id} />
-          ))}
-        </CategoryContainer>
-        <Spacer h={3} />
-        <View style={{flex:1}}>
+        <Txt color="black" size="h1" bold>
+          Categorias
+        </Txt>
+      </CategoriasTitleWrapper>
+      <Spacer />
+      <CategoryContainer>
+        {names.map((item) => (
+          <CatItem id={item.id} />
+        ))}
+      </CategoryContainer>
+      <Spacer h={3} />
+      <View style={{ flex: 1 }}>
         <PizzaContainer
+          showsVerticalScrollIndicator={false}
+          contentContainerStyle={{ paddingBottom: 40 }}
           data={selected.id === 0 ? popularPizzas : popularRefris}
           renderItem={({ item, index }) => {
             return (
-              <Animatable.View useNativeDriver delay={index * 300} animation="fadeInRight">
+              <Animatable.View
+                useNativeDriver
+                delay={index * 300}
+                animation="fadeInRight"
+              >
                 <PizzaWrapper key={item}>
                   <PizzaImage resizeMode="cover" source={item.img} />
                   <PizzaDetails>
@@ -247,7 +275,7 @@ export default function Search() {
             );
           }}
         />
-        </View>
+      </View>
     </Container>
   );
 }

@@ -85,9 +85,9 @@ padding: 10px;
 
 export const PizzaContainer=styled(FlatList)`
 flex:1;
-/* padding-bottom: 20px; */
+/* padding-bottom: 60px; */
 /* padding-top: 20px; */
-min-height: 100%;
+min-height: 120%;
 `
 
 export const PizzaWrapper=styled.TouchableOpacity`

@@ -21,9 +21,7 @@ const { Screen, Navigator } = createBottomTabNavigator();
 export default function AppRoutes() {
   return (
     <Navigator
-    
       screenOptions={{
-        
         headerShown: false,
         // tabBarShowLabel: false,
         tabBarInactiveBackgroundColor: colors.grad1,
@@ -31,7 +29,7 @@ export default function AppRoutes() {
         tabBarHideOnKeyboard: true,
         tabBarStyle: {
           borderWidth: 0,
-          height: Platform.OS==='ios' ? 88 : hp(10),
+          height: Platform.OS === "ios" ? 88 : hp(10),
           padding: 0,
           elevation: 0,
 
@@ -43,7 +41,10 @@ export default function AppRoutes() {
           fontSize: fonts.p,
           //   color: "red",
         },
-        tabBarItemStyle: { paddingVertical: hp(1.5) },
+        tabBarItemStyle:
+          Platform.OS === "ios"
+            ? { paddingVertical: hp(0.5) }
+            : { paddingVertical: hp(1.5) },
       }}
       tabBarOptions={{
         activeTintColor: colors.secondary,
