@@ -35,5 +35,26 @@ margin-top: ${hp('30%')}px;
 `
 export const DetailsHeader=styled.View`
 
+height: ${hp('6%')}px;
+width: 50%;
+flex-direction: row;
+align-items: center;
+justify-content:space-between;
+align-self: center;
+margin-top: ${hp('4%')}px;
+`
+
+export const DetailsHeaderColumn=styled.View`
+align-items: center;
+justify-content:space-between;
+flex-direction: column;
+/* height: 100%; */
+
+`
+
+export const Divider=styled.View`
+height: 100%;
+background-color:${colors.bg_white};
+width: 2px;
 
 `
