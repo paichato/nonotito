@@ -23,7 +23,7 @@ import { Txt } from "../Opening/styles";
 import { color } from "react-native-reanimated";
 import colors from "../../lib/colors";
 
-export default function PizzaDetails() {
+export default function PizzaDetails({ navigation }) {
   const names = [
     { id: 0, name: "Pequena" },
     { id: 1, name: "Media" },
@@ -31,20 +31,27 @@ export default function PizzaDetails() {
   ];
 
   const [selected, setSelected] = useState({ id: 0, selected: true });
-  const [quantity,setQuantity]=useState(1);
+  const [quantity, setQuantity] = useState(1);
 
   const handleCategorySelect = (id) => {
     setSelected({ id: id });
   };
 
-  const handleQtIncrement=() => {
-      setQuantity(oldState=>oldState+1);
-  }
+  const handleQtIncrement = () => {
+    setQuantity((oldState) => oldState + 1);
+  };
 
-  
-  const handleQtDecrement=() => {
-    setQuantity(oldState=>oldState-1);
-}
+  const handleQtDecrement = () => {
+    setQuantity((oldState) => oldState - 1);
+  };
+
+  const handleGoBack = () => {
+    navigation.goBack();
+  };
+
+  const handleCart = () => {
+    navigation.navigate("Cart");
+  };
 
   return (
     <View style={{ flex: 1, height: "100%" }}>
@@ -60,7 +67,7 @@ export default function PizzaDetails() {
       />
       <Main>
         <Header>
-          <ButtonWrapper Icon={<BackIcon />} />
+          <ButtonWrapper action={handleGoBack} Icon={<BackIcon />} />
           <Txt
             // margin
             bold
@@ -135,6 +142,7 @@ export default function PizzaDetails() {
               </CategoryWrapper>
             )}
             data={names}
+            keyExtractor={(item) => item.id}
             contentContainerStyle={{
               width: "100%",
               paddingHorizontal: "5%",
@@ -144,12 +152,16 @@ export default function PizzaDetails() {
             }}
           ></SizeSelectContainer>
           <DetailsFooter>
-            <CartButton>
-              <Txt margin color="white">
-            +  Carrinho
-              </Txt>
+            <CartButton onPress={handleCart}>
+              <>
+                <Txt margin color="white">
+                  + Carrinho
+                </Txt>
+              </>
             </CartButton>
-            <Txt margin color='blue' bold size='h1' >R$ 47,50</Txt>
+            <Txt margin color="blue" bold size="h1">
+              R$ 47,50
+            </Txt>
           </DetailsFooter>
         </DetailsContainer>
       </Main>

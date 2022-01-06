@@ -5,6 +5,7 @@ import Opening from "../screens/Opening";
 import Register from "../screens/Register";
 import AppRoutes from "./app.routes";
 import PizzaDetails from "../screens/PizzaDetails";
+import Cart from "../screens/Cart";
 
 const { Screen, Navigator } = createNativeStackNavigator();
 
@@ -15,6 +16,7 @@ export default function StackRoutes() {
       <Screen name="Register" component={Register} />
       <Screen name="Home-Tab" component={AppRoutes} /> */}
       <Screen name="PizzaDetails" component={PizzaDetails} />
+      <Screen name="Cart" component={Cart} />
     </Navigator>
   );
 }
