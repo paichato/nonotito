@@ -36,18 +36,20 @@ margin-top: ${hp('30%')}px;
 export const DetailsHeader=styled.View`
 
 height: ${hp('6%')}px;
-width: 50%;
+width: 55%;
 flex-direction: row;
 align-items: center;
 justify-content:space-between;
 align-self: center;
 margin-top: ${hp('4%')}px;
+
 `
 
 export const DetailsHeaderColumn=styled.View`
 align-items: center;
-justify-content:space-between;
+justify-content:space-around;
 flex-direction: column;
+/* padding-top: 5px; */
 /* height: 100%; */
 
 `
@@ -57,4 +59,20 @@ height: 100%;
 background-color:${colors.bg_white};
 width: 2px;
 
+`
+
+export const DetailsCenter=styled.View`
+height: 50%;
+flex-direction: row;
+width: 80%;
+align-items: center;
+justify-content: space-between;
+align-self: center;
+
+`
+export const DetailsTextContainer=styled.View`
+height: ${hp('10%')}px;
+width: 70%;
+text-align:left;
+align-self: center;
 `

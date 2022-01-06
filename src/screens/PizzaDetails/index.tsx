@@ -1,14 +1,19 @@
 import React from "react";
 import { View, Text, ImageBackground, Image } from "react-native";
 import {
+  DetailsCenter,
   DetailsContainer,
   DetailsHeader,
   DetailsHeaderColumn,
+  DetailsTextContainer,
   Divider,
   Header,
   Main,
 } from "./styles";
 import HeartIcon from "../../assets/heart.svg";
+import BackIcon from "../../assets/back.svg";
+import PlusIcon from "../../assets/plus.svg";
+import MinusIcon from "../../assets/minus.svg";
 import ButtonWrapper from "../../components/ButtonWrapper";
 import { Txt } from "../Opening/styles";
 
@@ -27,7 +32,7 @@ export default function PizzaDetails() {
       />
       <Main>
         <Header>
-          <ButtonWrapper Icon={<HeartIcon />} />
+          <ButtonWrapper Icon={<BackIcon />} />
           <Txt
             // margin
             bold
@@ -40,7 +45,7 @@ export default function PizzaDetails() {
         <DetailsContainer>
           <DetailsHeader>
             <DetailsHeaderColumn>
-              <Txt margin bold color={"blue"}>
+              <Txt size="h2" margin bold color={"blue"}>
                 228
               </Txt>
               <Txt
@@ -54,7 +59,7 @@ export default function PizzaDetails() {
 
             <Divider />
             <DetailsHeaderColumn>
-              <Txt margin bold color={"blue"}>
+              <Txt size="h2" margin bold color={"blue"}>
                 20 Min
               </Txt>
               <Txt
@@ -66,6 +71,27 @@ export default function PizzaDetails() {
               </Txt>
             </DetailsHeaderColumn>
           </DetailsHeader>
+          <DetailsCenter>
+            <DetailsHeaderColumn>
+              <ButtonWrapper Icon={<PlusIcon />} />
+              <Txt margin bold size={"h1"} color={"blue"}>
+                1
+              </Txt>
+              <ButtonWrapper Icon={<MinusIcon />} />
+            </DetailsHeaderColumn>
+            <DetailsTextContainer>
+              <Txt
+                margin
+                position='left'
+                // bold
+                // size={'h1'}
+                color={"gray"}
+              >
+                Pizza com molho de tomate, duas camadas da melhor mussarela da
+                cidade e oregano.
+              </Txt>
+            </DetailsTextContainer>
+          </DetailsCenter>
         </DetailsContainer>
       </Main>
     </View>
