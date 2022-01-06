@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import { View, Text, ImageBackground, Image } from "react-native";
 import {
+  CategoryWrapper,
   DetailsCenter,
   DetailsContainer,
   DetailsHeader,
@@ -9,6 +10,7 @@ import {
   Divider,
   Header,
   Main,
+  SizeSelectContainer,
 } from "./styles";
 import HeartIcon from "../../assets/heart.svg";
 import BackIcon from "../../assets/back.svg";
@@ -16,8 +18,22 @@ import PlusIcon from "../../assets/plus.svg";
 import MinusIcon from "../../assets/minus.svg";
 import ButtonWrapper from "../../components/ButtonWrapper";
 import { Txt } from "../Opening/styles";
+import { color } from "react-native-reanimated";
+import colors from "../../lib/colors";
 
 export default function PizzaDetails() {
+  const names = [
+    { id: 0, name: "Pequena" },
+    { id: 1, name: "Media" },
+    { id: 2, name: "Grande" },
+  ];
+
+  const [selected, setSelected] = useState({ id: 0, selected: true });
+
+  const handleCategorySelect = (id) => {
+    setSelected({ id: id });
+  };
+
   return (
     <View style={{ flex: 1, height: "100%" }}>
       <Image
@@ -74,7 +90,7 @@ export default function PizzaDetails() {
           <DetailsCenter>
             <DetailsHeaderColumn>
               <ButtonWrapper Icon={<PlusIcon />} />
-              <Txt margin bold size={"h1"} color={"blue"}>
+              <Txt bold size={"h2"} color={"blue"}>
                 1
               </Txt>
               <ButtonWrapper Icon={<MinusIcon />} />
@@ -82,7 +98,7 @@ export default function PizzaDetails() {
             <DetailsTextContainer>
               <Txt
                 margin
-                position='left'
+                position="left"
                 // bold
                 // size={'h1'}
                 color={"gray"}
@@ -92,6 +108,30 @@ export default function PizzaDetails() {
               </Txt>
             </DetailsTextContainer>
           </DetailsCenter>
+          <SizeSelectContainer
+            renderItem={({ item }) => (
+              <CategoryWrapper
+                selected={selected.id === item.id}
+                onPress={() => handleCategorySelect(item.id)}
+              >
+                <Txt
+                  margin
+                  color={selected.id === item.id ? colors.bg_white : 'gray'}
+                >
+                  {item.name}
+                </Txt>
+              </CategoryWrapper>
+            )}
+            data={names}
+            contentContainerStyle={{
+              width: "100%",
+              paddingHorizontal: "5%",
+              alignItems: "center",
+              justifyContent: "space-between",
+              alignItems: "center",
+              flexDirection: "row",
+            }}
+          ></SizeSelectContainer>
         </DetailsContainer>
       </Main>
     </View>

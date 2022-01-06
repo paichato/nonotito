@@ -4,6 +4,7 @@ import {
     heightPercentageToDP as hp,
   } from "react-native-responsive-screen";
 import colors from "../../lib/colors";
+import { TouchableOpacity } from "react-native";
 
 export const Header=styled.View`
 flex-direction: row;
@@ -62,17 +63,36 @@ width: 2px;
 `
 
 export const DetailsCenter=styled.View`
-height: 50%;
+height: 40%;
 flex-direction: row;
 width: 80%;
 align-items: center;
 justify-content: space-between;
 align-self: center;
-
+margin-top: ${hp('4%')}px;
 `
 export const DetailsTextContainer=styled.View`
-height: ${hp('10%')}px;
+/* height: ${hp('10%')}px; */
 width: 70%;
 text-align:left;
 align-self: center;
+`
+
+export const CategoryWrapper=styled(TouchableOpacity)`
+height: ${hp('6%')}px;
+width: ${wp('25%')}px;
+background-color:${({selected})=>selected ? colors.blue :colors.unselected_light};
+align-items: center;
+justify-content:center;
+border-radius: 10px;
+padding: 10px;
+/* padding-top:20px; */
+/* padding-bottom:20px; */
+/* padding: 20px; */
+`
+
+export const SizeSelectContainer=styled.FlatList`
+height: ${hp('8%')}px;
+flex-direction:row;
+
 `
