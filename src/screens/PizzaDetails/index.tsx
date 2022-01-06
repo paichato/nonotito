@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { View, Text, ImageBackground, Image } from "react-native";
 import {
+  CartButton,
   CategoryWrapper,
   DetailsCenter,
   DetailsContainer,
+  DetailsFooter,
   DetailsHeader,
   DetailsHeaderColumn,
   DetailsTextContainer,
@@ -29,10 +31,20 @@ export default function PizzaDetails() {
   ];
 
   const [selected, setSelected] = useState({ id: 0, selected: true });
+  const [quantity,setQuantity]=useState(1);
 
   const handleCategorySelect = (id) => {
     setSelected({ id: id });
   };
+
+  const handleQtIncrement=() => {
+      setQuantity(oldState=>oldState+1);
+  }
+
+  
+  const handleQtDecrement=() => {
+    setQuantity(oldState=>oldState-1);
+}
 
   return (
     <View style={{ flex: 1, height: "100%" }}>
@@ -89,11 +101,11 @@ export default function PizzaDetails() {
           </DetailsHeader>
           <DetailsCenter>
             <DetailsHeaderColumn>
-              <ButtonWrapper Icon={<PlusIcon />} />
+              <ButtonWrapper action={handleQtIncrement} Icon={<PlusIcon />} />
               <Txt bold size={"h2"} color={"blue"}>
-                1
+                {quantity}
               </Txt>
-              <ButtonWrapper Icon={<MinusIcon />} />
+              <ButtonWrapper action={handleQtDecrement} Icon={<MinusIcon />} />
             </DetailsHeaderColumn>
             <DetailsTextContainer>
               <Txt
@@ -116,7 +128,7 @@ export default function PizzaDetails() {
               >
                 <Txt
                   margin
-                  color={selected.id === item.id ? colors.bg_white : 'gray'}
+                  color={selected.id === item.id ? colors.bg_white : "gray"}
                 >
                   {item.name}
                 </Txt>
@@ -128,10 +140,17 @@ export default function PizzaDetails() {
               paddingHorizontal: "5%",
               alignItems: "center",
               justifyContent: "space-between",
-              alignItems: "center",
               flexDirection: "row",
             }}
           ></SizeSelectContainer>
+          <DetailsFooter>
+            <CartButton>
+              <Txt margin color="white">
+            +  Carrinho
+              </Txt>
+            </CartButton>
+            <Txt margin color='blue' bold size='h1' >R$ 47,50</Txt>
+          </DetailsFooter>
         </DetailsContainer>
       </Main>
     </View>

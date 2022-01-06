@@ -30,6 +30,8 @@ height: ${hp('60%')}px;
 background-color:${colors.grad1}
 border-radius:30px;
 margin-top: ${hp('30%')}px;
+
+/* align-items:center; */
 /* align-self: flex-end; */
 
 /* align-self:flex-end; */
@@ -94,5 +96,27 @@ padding: 10px;
 export const SizeSelectContainer=styled.FlatList`
 height: ${hp('8%')}px;
 flex-direction:row;
+
+`
+
+export const DetailsFooter=styled.View`
+width: 100%;
+height: ${hp('10%')}px;
+flex-direction:row;
+bottom: 0px;
+align-self: center;
+padding-left: ${wp('5%')}px;
+padding-right: ${wp('5%')}px;
+align-items: center;
+justify-content:space-between;
+`
+
+export const CartButton=styled(TouchableOpacity)`
+width: 60%;
+height: ${hp('6%')}px;
+border-radius:10px;
+align-items:center;
+justify-content:center;
+background-color:${colors.secondary};
 
 `
