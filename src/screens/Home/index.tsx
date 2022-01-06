@@ -31,8 +31,16 @@ import colors from "../../lib/colors";
 import FilterIcon from "../../assets/filter.svg";
 import PlusIcon from "../../assets/plus.svg";
 import * as Animatable from "react-native-animatable";
+import {
+  SharedElement,
+  SharedElementTransition,
+  nodeFromRef,
+} from "react-native-shared-element";
+import { useNavigation } from "@react-navigation/native";
 
 export default function Home() {
+  let startAncestor;
+  let startNode;
   const names = [
     { id: 0, name: "Pizzas" },
     { id: 1, name: "Vegs" },
@@ -70,6 +78,13 @@ export default function Home() {
   ];
 
   const [selected, setSelected] = useState({ id: 0, selected: true });
+
+  const navigation=useNavigation();
+
+  const handleItemSelect = (id) => {
+    const selectedData = popularPizzas.filter((item) => item.id === id);
+    navigation.navigate("PizzaDetails", { item: selectedData[0] });
+  };
 
   const CatItem = ({ id }) => {
     return (
@@ -112,7 +127,12 @@ export default function Home() {
   };
 
   return (
-    <Animatable.View useNativeDriver style={{ flex: 1 }} animation="fadeInUp">
+    <Animatable.View
+      ref={(ref) => (startAncestor = nodeFromRef(ref))}
+      useNativeDriver
+      style={{ flex: 1 }}
+      animation="fadeInUp"
+    >
       <Container>
         <HeaderWrapper>
           <Header>
@@ -130,7 +150,7 @@ export default function Home() {
 
           <Banner activeOpacity={0.99}>
             <Animatable.View
-            useNativeDriver
+              useNativeDriver
               duration={300}
               delay={500}
               style={{ flex: 1, width: "100%" }}
@@ -196,9 +216,28 @@ export default function Home() {
           data={selected.id === 0 ? popularPizzas : popularRefris}
           renderItem={({ item, index }) => {
             return (
-              <Animatable.View useNativeDriver delay={index * 300} animation="fadeInRight">
-                <PizzaWrapper key={item}>
-                  <PizzaImage resizeMode="cover" source={item.img} />
+              <Animatable.View
+                useNativeDriver
+                delay={index * 300}
+                animation="fadeInRight"
+              >
+                <PizzaWrapper
+                  onPress={() => handleItemSelect(item.id)}
+                  key={item}
+                >
+                  <SharedElement
+                    id={item.id}
+                    style={{ width: "25%" }}
+                    onNode={(node) => (startNode = node)}
+                  >
+                    <PizzaImage
+                      style={{ resizeMode: "cover" }}
+                      resizeMode="cover"
+                      source={item.img}
+                      // source={{uri:item.img}}
+                    />
+                  </SharedElement>
+
                   <PizzaDetails>
                     <Txt position="left" margin color="blue" bold>
                       {item.name}

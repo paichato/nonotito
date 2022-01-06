@@ -102,7 +102,7 @@ margin-bottom: ${hp('1.5%')}px;
 padding:0px 5px;
 `
 export const PizzaImage=styled.Image`
-width: 25%;
+width: 100%;
 border-radius:16px;
 
 `

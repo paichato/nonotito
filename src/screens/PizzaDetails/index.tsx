@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { View, Text, ImageBackground, Image } from "react-native";
+import React, { useEffect, useState } from "react";
+import { View, Text, ImageBackground, Image, StyleSheet } from "react-native";
 import {
   CartButton,
   CategoryWrapper,
@@ -20,10 +20,23 @@ import PlusIcon from "../../assets/plus.svg";
 import MinusIcon from "../../assets/minus.svg";
 import ButtonWrapper from "../../components/ButtonWrapper";
 import { Txt } from "../Opening/styles";
-import { color } from "react-native-reanimated";
+import Animated, { color } from "react-native-reanimated";
 import colors from "../../lib/colors";
 
-export default function PizzaDetails({ navigation }) {
+import {
+  SharedElement,
+  SharedElementTransition,
+  nodeFromRef,
+} from "react-native-shared-element";
+import { useNavigation } from "@react-navigation/native";
+
+const PizzaDetails = ({ route }) => {
+  const navigation = useNavigation();
+  let endAncestor;
+  let endNode;
+
+  const { item } = route.params;
+
   const names = [
     { id: 0, name: "Pequena" },
     { id: 1, name: "Media" },
@@ -53,18 +66,33 @@ export default function PizzaDetails({ navigation }) {
     navigation.navigate("Cart");
   };
 
+  useEffect(() => {
+    console.log(item);
+  }, []);
+
+  const position = new Animated.Value(0);
+
   return (
-    <View style={{ flex: 1, height: "100%" }}>
-      <Image
-        style={{
-          width: "100%",
-          height: "50%",
-          resizeMode: "cover",
-          alignSelf: "flex-start",
-          top: 0,
-        }}
-        source={require("../../assets/pizzas/pizza4.jpg")}
-      />
+    <View
+      ref={(ref) => (endAncestor = nodeFromRef(ref))}
+      style={{ flex: 1, height: "100%" }}
+    >
+     
+      <SharedElement resize='clip' animation='fade' id={item.id} >
+        <Image
+          style={{
+            width: "100%",
+            height: "70%",
+            resizeMode: "cover",
+            alignSelf: "flex-start",
+            top: 0,
+          }}
+          // source={require("../../assets/pizzas/pizza4.jpg")}
+          //   source={{ uri: product.img }}
+          source={item.img}
+        />
+      </SharedElement>
+
       <Main>
         <Header>
           <ButtonWrapper action={handleGoBack} Icon={<BackIcon />} />
@@ -167,4 +195,17 @@ export default function PizzaDetails({ navigation }) {
       </Main>
     </View>
   );
-}
+};
+
+PizzaDetails.sharedElements = (route) => {
+  const { item } = route.params;
+  return [
+    {
+      id: item.id,
+      animation: "move",
+      resize: "clip",
+    },
+  ];
+};
+
+export default PizzaDetails;
