@@ -55,7 +55,7 @@ const PizzaDetails = ({ route }) => {
   };
 
   const handleQtDecrement = () => {
-    setQuantity((oldState) => oldState - 1);
+    setQuantity((oldState) => oldState>1 ? oldState- 1 : oldState);
   };
 
   const handleGoBack = () => {
@@ -78,7 +78,7 @@ const PizzaDetails = ({ route }) => {
       style={{ flex: 1, height: "100%" }}
     >
      
-      <SharedElement resize='clip' animation='fade' id={item.id} >
+      <SharedElement resize='auto' animation='move' id={item.id} >
         <Image
           style={{
             width: "100%",
@@ -101,7 +101,7 @@ const PizzaDetails = ({ route }) => {
             bold
             color={"white"}
           >
-            Marguerita
+            {item.name}
           </Txt>
           <ButtonWrapper Icon={<HeartIcon />} />
         </Header>
@@ -188,7 +188,7 @@ const PizzaDetails = ({ route }) => {
               </>
             </CartButton>
             <Txt margin color="blue" bold size="h1">
-              R$ 47,50
+              R$ {String(Number(item.price.replace(/,/g,'.'))*quantity).replace(/\./g,',')}
             </Txt>
           </DetailsFooter>
         </DetailsContainer>
