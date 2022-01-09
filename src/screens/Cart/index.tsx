@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, Text, ScrollView, Image } from "react-native";
+import { View, Text, ScrollView, Image, TouchableOpacity } from "react-native";
 import ButtonWrapper from "../../components/ButtonWrapper";
 import MainHeader from "../../components/MainHeader";
 import { AddMoreContainer, AddMoreWrapper, Banner, BannerLeft, Container, CupomContainer, Divider, Footer, FooterButton, MainContainer, PaymentLeft, PaymentRight, PaymentTypeWrapper, PizzaDetails, PizzaImage, PizzaWrapper, SubTotalWrapper } from "./styles";
@@ -140,7 +140,7 @@ export default function Cart({navigation}) {
           <Txt margin>        </Txt>
       </MainHeader>
       <MainContainer contentContainerStyle={{height:hp('70%'),width:'100%',paddingHorizontal:wp('5%'),alignItems:'center', justifyContent:'center'}}>
-        <ScrollView showsVerticalScrollIndicator={false} style={{height:'100%',width:'100%'}} contentContainerStyle={{height:'200%',width:'100%'}} >
+        <ScrollView showsVerticalScrollIndicator={false} style={{height:'100%',width:'100%'}} contentContainerStyle={{minHeight:'180%',width:'100%', paddingBottom:10}} >
 
         
         <Banner>
@@ -205,9 +205,11 @@ export default function Cart({navigation}) {
           </Txt>
         </SubTotalWrapper>
         <Divider/>
+        <TouchableOpacity>
         <Txt style={{fontSize:hp(1.4), marginTop:5}} margin medium>
         Adicionar mais itens
         </Txt>
+        </TouchableOpacity>
         <Txt style={{alignSelf: 'flex-start'}} color='blue'  position='left'  bold>
         Peça também
         </Txt>
@@ -226,9 +228,15 @@ export default function Cart({navigation}) {
           </AddMoreWrapper>
         </AddMoreContainer>
 
-        <Txt color='blue'  position='left'  bold>Pagamento</Txt>
+        <Txt style={{marginBottom :10}} color='blue'  position='left'  bold>Pagamento</Txt>
         {cards.map((item)=><PaymentItem cards={item}/>
         )}
+        <Divider style={{marginTop:'5%'}}/>
+        <TouchableOpacity>
+        <Txt style={{fontSize:hp(1.4), marginTop:5}} margin medium>
+        Add novo metodo de pagamento
+        </Txt>
+        </TouchableOpacity>
         </ScrollView>
       </MainContainer>
       <Footer style={{elevation:10}}>
