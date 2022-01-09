@@ -55,14 +55,15 @@ export default function Cart({navigation}) {
     {
       id: 1,
       name: "Hipercard - Crédito",
-      price: "2445",
+      number: "2445",
       img: require("../../assets/card2.png"),
     },
     {
-      id: 1,
+      id: 2,
       name: "Dinheiro",
-      price: "R$ 59,90",
+      number: "R$ 59,90",
       img: require("../../assets/card3.png"),
+      nodot:true,
     },
   ];
 
@@ -110,11 +111,11 @@ export default function Cart({navigation}) {
       <PaymentTypeWrapper onPress={()=>handleSelectPayment(cards.id)} selected={selectedPayment===cards.id}>
           <PaymentLeft>
             <Image style={{resizeMode:'contain', width: '20%', height: '100%'}} source={require('../../assets/card1.png')}  />
-            <View style={{flexDirection:'column', alignItems: 'center', justifyContent: 'center'}} >
+            <View style={{flexDirection:'column', alignItems: 'flex-start', justifyContent: 'center'}} >
               <Txt margin color='blue' >{cards.name}</Txt>
               <View style={{flexDirection:'row', alignItems: 'center', justifyContent: 'center'}} >
-                <Dots height={'20%'}/>
-              <Txt margin color='gray' >{cards.number}</Txt>
+                {!cards.nodot && <Dots height={'20%'}/>}
+              <Txt margin position="left" color='gray' >{cards.number}</Txt>
               </View>
             </View> 
           </PaymentLeft>
@@ -226,7 +227,8 @@ export default function Cart({navigation}) {
         </AddMoreContainer>
 
         <Txt color='blue'  position='left'  bold>Pagamento</Txt>
-        
+        {cards.map((item)=><PaymentItem cards={item}/>
+        )}
         </ScrollView>
       </MainContainer>
       <Footer style={{elevation:10}}>
