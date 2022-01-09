@@ -1,10 +1,14 @@
 import React from "react";
-import { View, Text } from "react-native";
+import { View, Text, ScrollView, Image } from "react-native";
 import ButtonWrapper from "../../components/ButtonWrapper";
 import MainHeader from "../../components/MainHeader";
-import { Banner, BannerLeft, Container, CupomContainer, MainContainer, PizzaDetails, PizzaImage, PizzaWrapper, SubTotalWrapper } from "./styles";
+import { AddMoreContainer, AddMoreWrapper, Banner, BannerLeft, Container, CupomContainer, Divider, Footer, FooterButton, MainContainer, PizzaDetails, PizzaImage, PizzaWrapper, SubTotalWrapper } from "./styles";
 import BackIcon from "../../assets/back.svg";
 import { Txt } from "../Opening/styles";
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from "react-native-responsive-screen";
 
 import { SharedElement } from "react-navigation-shared-element";
 
@@ -45,7 +49,7 @@ export default function Cart({navigation}) {
                 >
                   
                     <PizzaImage
-                      style={{ resizeMode: "cover", width: "25%", height: "100%" }}
+                      style={{ resizeMode: "contain", width: "20%", height: "100%" }}
                       resizeMode="contain"
                       source={item.img}
                       // source={require('../../assets/pizzas/pizza6.jpg')}
@@ -81,7 +85,10 @@ export default function Cart({navigation}) {
           </Txt>
           <Txt margin>        </Txt>
       </MainHeader>
-      <MainContainer>
+      <MainContainer contentContainerStyle={{height:hp('70%'),width:'100%',paddingHorizontal:wp('5%'),alignItems:'center', justifyContent:'center'}}>
+        <ScrollView showsVerticalScrollIndicator={false} style={{height:'100%',width:'100%'}} contentContainerStyle={{height:'200%',width:'100%'}} >
+
+        
         <Banner>
           <BannerLeft>
           <Txt margin color='white' medium >
@@ -143,8 +150,34 @@ export default function Cart({navigation}) {
           R$ 57,50
           </Txt>
         </SubTotalWrapper>
-        
+        <Divider/>
+        <Txt style={{fontSize:hp(1.4), marginTop:5}} margin medium>
+        Adicionar mais itens
+        </Txt>
+        <Txt style={{alignSelf: 'flex-start'}} color='blue'  position='left'  bold>
+        Peça também
+        </Txt>
+        <AddMoreContainer>
+          <AddMoreWrapper style={{ alignItems: 'center', justifyContent: 'center'}}>
+            <Image style={{width: '100%', height: '70%', resizeMode:'contain'}} source={require('../../assets/refris/refri1.png')} />
+            <Txt margin color='white'style={{fontSize:hp(1.4)}}>H20 Limão</Txt>
+          </AddMoreWrapper>
+          <AddMoreWrapper style={{ alignItems: 'center', justifyContent: 'center'}}>
+            <Image style={{width: '100%', height: '70%', resizeMode:'contain'}} source={require('../../assets/refris/refri3.png')} />
+            <Txt margin color='white' style={{fontSize:hp(1.4)}}>H20 Limão</Txt>
+          </AddMoreWrapper>
+          <AddMoreWrapper style={{ alignItems: 'center', justifyContent: 'center'}}>
+            <Image style={{width: '100%', height: '70%', resizeMode:'contain'}} source={require('../../assets/refris/refri1.png')} />
+            <Txt margin color='white' style={{fontSize:hp(1.4)}} >H20 Limão</Txt>
+          </AddMoreWrapper>
+        </AddMoreContainer>
+        </ScrollView>
       </MainContainer>
+      <Footer style={{elevation:10}}>
+        <FooterButton  >
+          <Txt color='white' margin >Continuar</Txt>
+        </FooterButton>
+      </Footer>
     </Container>
   );
 }
