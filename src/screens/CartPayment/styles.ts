@@ -1,5 +1,5 @@
 import styled from "styled-components/native";
 
-export const Conatiner=styled.View`
-
+export const Container=styled.View`
+flex:1;
 `

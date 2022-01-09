@@ -29,6 +29,7 @@ import {
   nodeFromRef,
 } from "react-native-shared-element";
 import { useNavigation } from "@react-navigation/native";
+import MainHeader from "../../components/MainHeader";
 
 const PizzaDetails = ({ route }) => {
   const navigation = useNavigation();
@@ -94,7 +95,7 @@ const PizzaDetails = ({ route }) => {
       </SharedElement>
 
       <Main>
-        <Header>
+        <MainHeader>
           <ButtonWrapper action={handleGoBack} Icon={<BackIcon />} />
           <Txt
             // margin
@@ -104,7 +105,7 @@ const PizzaDetails = ({ route }) => {
             {item.name}
           </Txt>
           <ButtonWrapper Icon={<HeartIcon />} />
-        </Header>
+        </MainHeader>
         <DetailsContainer>
           <DetailsHeader>
             <DetailsHeaderColumn>
