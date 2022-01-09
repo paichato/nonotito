@@ -120,3 +120,24 @@ border-radius: 10px;
 background-color: ${colors.grad1};
 
 `
+
+export const PaymentTypeWrapper=styled(TouchableOpacity)`
+flex-direction: row;
+align-items:center;
+justify-content:space-between;
+height: ${wp('24%')}px;
+width: 100%;
+border-width: ${({selected})=>selected ? 2 :0}px;
+border-color: ${({selected})=>selected ? colors.secondary : colors.grad1};
+border-radius:16px;
+padding-right: ${wp('5%')}px;
+`
+export const PaymentLeft=styled.View`
+flex-direction: row;
+width: 80%;
+
+`
+
+export const PaymentRight=styled(TouchableOpacity)`
+
+`

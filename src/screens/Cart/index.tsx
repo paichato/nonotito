@@ -1,22 +1,34 @@
-import React from "react";
+import React, { useState } from "react";
 import { View, Text, ScrollView, Image } from "react-native";
 import ButtonWrapper from "../../components/ButtonWrapper";
 import MainHeader from "../../components/MainHeader";
-import { AddMoreContainer, AddMoreWrapper, Banner, BannerLeft, Container, CupomContainer, Divider, Footer, FooterButton, MainContainer, PizzaDetails, PizzaImage, PizzaWrapper, SubTotalWrapper } from "./styles";
+import { AddMoreContainer, AddMoreWrapper, Banner, BannerLeft, Container, CupomContainer, Divider, Footer, FooterButton, MainContainer, PaymentLeft, PaymentRight, PaymentTypeWrapper, PizzaDetails, PizzaImage, PizzaWrapper, SubTotalWrapper } from "./styles";
 import BackIcon from "../../assets/back.svg";
 import { Txt } from "../Opening/styles";
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
+import Dots from '../../assets/dots.svg'
 
 import { SharedElement } from "react-navigation-shared-element";
 
 export default function Cart({navigation}) {
 
+  const [selectedPayment,setSelectedPayment]=useState();
+
   const handleGoBack = () => {
     navigation.goBack();
   };
+
+  const handleSelectPayment=(id)=>{
+    if(selectedPayment ===id){
+      setSelectedPayment(null);
+    }else{
+      setSelectedPayment(id);
+    }
+    
+  }
 
   const cart = [
     {
@@ -30,6 +42,27 @@ export default function Cart({navigation}) {
       name: "Guaraná",
       price: "10,00",
       img: require("../../assets/refris/refri4.png"),
+    },
+  ];
+
+  const cards = [
+    {
+      id: 0,
+      name: "Elo - Débito",
+      number: "2445",
+      img: require("../../assets/card1.png"),
+    },
+    {
+      id: 1,
+      name: "Hipercard - Crédito",
+      price: "2445",
+      img: require("../../assets/card2.png"),
+    },
+    {
+      id: 1,
+      name: "Dinheiro",
+      price: "R$ 59,90",
+      img: require("../../assets/card3.png"),
     },
   ];
 
@@ -69,6 +102,26 @@ export default function Cart({navigation}) {
                     </Txt>
                    
                 </PizzaWrapper>
+    )
+  }
+
+  const PaymentItem=({cards})=>{
+    return(
+      <PaymentTypeWrapper onPress={()=>handleSelectPayment(cards.id)} selected={selectedPayment===cards.id}>
+          <PaymentLeft>
+            <Image style={{resizeMode:'contain', width: '20%', height: '100%'}} source={require('../../assets/card1.png')}  />
+            <View style={{flexDirection:'column', alignItems: 'center', justifyContent: 'center'}} >
+              <Txt margin color='blue' >{cards.name}</Txt>
+              <View style={{flexDirection:'row', alignItems: 'center', justifyContent: 'center'}} >
+                <Dots height={'20%'}/>
+              <Txt margin color='gray' >{cards.number}</Txt>
+              </View>
+            </View> 
+          </PaymentLeft>
+          <PaymentRight>
+            <Dots/>
+          </PaymentRight>
+        </PaymentTypeWrapper>
     )
   }
 
@@ -128,7 +181,7 @@ export default function Cart({navigation}) {
         </SubTotalWrapper>
         <SubTotalWrapper>
         <Txt margin color='white'  >
-            Subtotal
+        Desconto
           </Txt>
           <Txt margin color='white'  >
           R$ 57,50
@@ -136,7 +189,7 @@ export default function Cart({navigation}) {
         </SubTotalWrapper>
         <SubTotalWrapper>
         <Txt margin color='white'  >
-            Subtotal
+        Taxa de Entrega
           </Txt>
           <Txt margin color='white'  >
           R$ 57,50
@@ -144,7 +197,7 @@ export default function Cart({navigation}) {
         </SubTotalWrapper>
         <SubTotalWrapper>
         <Txt margin color='blue' bold >
-            Subtotal
+            Total
           </Txt>
           <Txt margin color='blue' bold size='h2' >
           R$ 57,50
@@ -160,17 +213,20 @@ export default function Cart({navigation}) {
         <AddMoreContainer>
           <AddMoreWrapper style={{ alignItems: 'center', justifyContent: 'center'}}>
             <Image style={{width: '100%', height: '70%', resizeMode:'contain'}} source={require('../../assets/refris/refri1.png')} />
-            <Txt margin color='white'style={{fontSize:hp(1.4)}}>H20 Limão</Txt>
+            <Txt bold margin color='white'style={{fontSize:hp(1.4)}}>H20 Limão</Txt>
           </AddMoreWrapper>
           <AddMoreWrapper style={{ alignItems: 'center', justifyContent: 'center'}}>
             <Image style={{width: '100%', height: '70%', resizeMode:'contain'}} source={require('../../assets/refris/refri3.png')} />
-            <Txt margin color='white' style={{fontSize:hp(1.4)}}>H20 Limão</Txt>
+            <Txt bold margin color='white' style={{fontSize:hp(1.4)}}>H20 Limão</Txt>
           </AddMoreWrapper>
           <AddMoreWrapper style={{ alignItems: 'center', justifyContent: 'center'}}>
-            <Image style={{width: '100%', height: '70%', resizeMode:'contain'}} source={require('../../assets/refris/refri1.png')} />
-            <Txt margin color='white' style={{fontSize:hp(1.4)}} >H20 Limão</Txt>
+            <Image style={{width: '100%', height: '70%', resizeMode:'contain'}} source={require('../../assets/torta.png')} />
+            <Txt bold margin color='white' style={{fontSize:hp(1.4)}} >Torta de Limão</Txt>
           </AddMoreWrapper>
         </AddMoreContainer>
+
+        <Txt color='blue'  position='left'  bold>Pagamento</Txt>
+        
         </ScrollView>
       </MainContainer>
       <Footer style={{elevation:10}}>
