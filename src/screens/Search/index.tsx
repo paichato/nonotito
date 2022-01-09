@@ -26,6 +26,8 @@ import BebidasIcon from "../../assets/bebidas.svg";
 import FilterIcon from "../../assets/filter.svg";
 import PlusIcon from "../../assets/plus.svg";
 import * as Animatable from "react-native-animatable";
+import { SharedElement } from "react-navigation-shared-element";
+import { useNavigation } from "@react-navigation/native";
 
 export default function Search() {
   const names = [
@@ -183,6 +185,13 @@ export default function Search() {
     setSelected({ id: id });
   };
 
+  const navigation=useNavigation();
+
+  const handleItemSelect = (id) => {
+    const selectedData = popularPizzas.filter((item) => item.id === id);
+    navigation.navigate("PizzaDetails", { item: selectedData[0] });
+  };
+
   const CatItem = ({ id }) => {
     return (
       <Animatable.View duration={150} animation="lightSpeedIn">
@@ -254,8 +263,14 @@ export default function Search() {
                 delay={index * 300}
                 animation="fadeInRight"
               >
-                <PizzaWrapper key={item}>
+                <PizzaWrapper onPress={() => handleItemSelect(item.id)} key={item}>
+                <SharedElement
+                    id={item.id}
+                    style={{ width: "25%" }}
+                    
+                  >
                   <PizzaImage resizeMode="cover" source={item.img} />
+                  </SharedElement>
                   <PizzaDetails>
                     <Txt position="left" margin color="blue" bold>
                       {item.name}
