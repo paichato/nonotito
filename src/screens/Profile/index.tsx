@@ -8,51 +8,117 @@ import {
 } from "react-native-responsive-screen";
 import colors from "../../lib/colors";
 import { Divider } from "../Cart/styles";
+import Bell from "../../assets/bell.svg";
+import Cupon from "../../assets/cupon.svg";
+import Heart from "../../assets/heart.svg";
+import Settings from "../../assets/settings.svg";
+import Help from "../../assets/help.svg";
 
 export default function Profile() {
-
-
-  const Items=()=>{
+  const Item = ({ title, desc, icon }) => {
     return (
-<View style={{flexDirection:'row', width:'100%', marginTop:hp(1)}}>
-      <Txt bold style={{backgroundColor:colors.unselected_light, width:25, borderRadius:5}} margin color='blue' >
-        1
-      </Txt>
-      <Txt style={{marginLeft:5}} medium margin color='white' >
-      Pizza de Marguerita (média)
-      </Txt>
-      </View>
-    )
-  }
+      <TouchableOpacity
+        style={{ flexDirection: "row", height: hp(6), marginTop: hp(2) }}
+      >
+        <View
+          style={{
+            width: "15%",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          {icon}
+        </View>
+
+        <View
+          style={{ width: "80%", height: "100%", justifyContent: "center" }}
+        >
+          <Txt position="left" color="blue" bold margin>
+            {title}
+          </Txt>
+          <Txt position="left" color="white" medium margin>
+            {desc}
+          </Txt>
+        </View>
+      </TouchableOpacity>
+    );
+  };
+
+  const Item_Alt = ({ title, icon }) => {
+    return (
+      <TouchableOpacity
+        style={{ flexDirection: "row", height: hp(6), marginTop: hp(2) }}
+      >
+        <View
+          style={{
+            width: "15%",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          {icon}
+        </View>
+
+        <View
+          style={{ width: "80%", height: "100%", justifyContent: "center" }}
+        >
+          <Txt
+            style={{ color: colors.unselected }}
+            position="left"
+            color="white"
+            bold
+            margin
+          >
+            {title}
+          </Txt>
+        </View>
+      </TouchableOpacity>
+    );
+  };
 
   return (
-    <Container source={require('../../assets/bg-grad.png')} >
-      <Txt style={{marginTop:hp(10)}} color='blue' size='h2' bold >Meus Pedidos</Txt>
-      <Txt style={{marginTop:hp(6)}} position='left' color='blue' size='h2' medium >Peça de novo</Txt>
-      <Items/>
-      <Items/>
-      <TouchableOpacity style={{backgroundColor:colors.secondary, width:'100%', height:hp(6), borderRadius:12, alignItems: 'center', justifyContent: 'center', marginTop:hp(3)}}>
-      <Txt margin color='white' >Adicionar a sacola</Txt>
-      </TouchableOpacity>
-
-      <Txt style={{marginTop:hp(5)}} color='blue' size='h2' bold position='left' >Histórico</Txt>
-
-      <Txt style={{marginTop:hp(6)}} color='blue' size='h2'  position='left' >Pedido concluído</Txt>
-      <Items/>
-      <Items/>
-      <Divider style={{marginTop:20}}/>
-      <View style={{width: '100%', flexDirection:'row', alignItems: 'center', justifyContent: 'space-around', marginTop:5}}>
-      <TouchableOpacity>
-        <Txt margin>
-        Ajuda
+    <Container source={require("../../assets/bg-grad.png")}>
+      <Txt style={{ marginTop: hp(10) }} color="blue" size="h2" bold>
+        Perfil
+      </Txt>
+      <TouchableOpacity
+        style={{
+          height: hp(6),
+          borderWidth: 2,
+          borderColor: colors.unselected_light,
+          borderRadius: 10,
+          alignItems: "center",
+          justifyContent: "center",
+          marginTop:hp(3)
+        }}
+      >
+        <Txt color="white" margin>
+          Entrar ou cadastrar-se
         </Txt>
       </TouchableOpacity>
-      <TouchableOpacity>
-      <Txt margin>
-      Adicionar á sacola
-        </Txt>
-      </TouchableOpacity>
+      <View style={{marginTop:hp(3)}}>
+
       </View>
+      <Item
+        icon={<Bell />}
+        title="Notificações"
+        desc="Central de notificações"
+      />
+      <Item
+        icon={<Cupon />}
+        title="Cupons"
+        desc="Veja seus cupons de desconto"
+      />
+      <Item
+        icon={<Heart />}
+        title="Favoritos"
+        desc="Veja seus pratos favoritos"
+      />
+      <View style={{marginTop:hp(5)}}>
+
+      </View>
+      <Item_Alt icon={<Help />} title="Ajuda" />
+      <Item_Alt icon={<Settings />} title="Configurações" />
     </Container>
   );
 }
