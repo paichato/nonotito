@@ -47,7 +47,7 @@ export default function StackRoutes() {
       initialRouteName="Opening"
       screenOptions={{ headerShown: false }}
     >
-      {/* <Stack.Screen name="Opening" component={Opening} />
+      <Stack.Screen name="Opening" component={Opening} />
       <Stack.Screen name="Register" component={Register} />
       <Stack.Screen name="Home-Tab" component={AppRoutes} />
       <Stack.Screen
@@ -62,7 +62,7 @@ export default function StackRoutes() {
         // screenOptions={() => options}
       />
       <Stack.Screen name="Cart" component={Cart} />
-      <Stack.Screen name="CartPayment" component={CartPayment} /> */}
+      <Stack.Screen name="CartPayment" component={CartPayment} />
       <Stack.Screen name="Location" component={Location} />
     </Stack.Navigator>
   );

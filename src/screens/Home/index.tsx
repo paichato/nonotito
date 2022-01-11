@@ -19,7 +19,7 @@ import {
 import Pin from "../../assets/location-pin.svg";
 import { Txt } from "../Opening/styles";
 import ButtonWrapper from "../../components/ButtonWrapper";
-import BannerImg from "../../assets/frete-img.svg";
+import BannerImg from "../../assets/frete2.svg";
 import HeartIcon from "../../assets/heart.svg";
 import PizzaIcon from "../../assets/pizza-icon.svg";
 import VegIconYellow from "../../assets/vegs-yellow.svg";
@@ -156,7 +156,7 @@ export default function Home() {
               style={{ flex: 1, width: "100%" }}
               animation="fadeIn"
             >
-              <BannerImg width={"100%"} height={"100%"} />
+              <BannerImg  width={"100%"} height={"100%"} />
             </Animatable.View>
           </Banner>
         </HeaderWrapper>
