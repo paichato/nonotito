@@ -1,6 +1,6 @@
 import React from "react";
 import { View, Text } from "react-native";
-import MapView, { Marker } from "react-native-maps";
+import MapView, { Marker , PROVIDER_GOOGLE } from "react-native-maps";
 import MapViewDirections from "react-native-maps-directions";
 import ButtonWrapper from "../../components/ButtonWrapper";
 import MainHeader from "../../components/MainHeader";
@@ -243,6 +243,7 @@ export default function Location({ navigation }) {
       <MapView
         style={{ height: "30%" }}
         customMapStyle={mapStyle}
+        provider={PROVIDER_GOOGLE}
         initialRegion={{
           latitude: 37.78825,
           longitude: -122.4324,

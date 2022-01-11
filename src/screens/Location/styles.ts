@@ -9,7 +9,9 @@ import colors from "../../lib/colors";
 export const MainView=styled.View`
 height:${hp('45%')}px;
 width: ${wp('100%')}px;
-
+border-top-right-radius: 10px;
+border-top-left-radius:10px;
+border-radius:30px;
 `
 
 export const DeliverGuyContainer=styled(TouchableOpacity)`
