@@ -1,6 +1,9 @@
 import React from "react";
 import { View, Text } from "react-native";
-import MapView from "react-native-maps";
+import MapView, { Marker } from "react-native-maps";
+import MapViewDirections from "react-native-maps-directions";
+import colors from "../../lib/colors";
+// import { GOOGLE_API_KEY } from "react-native-dotenv";
 
 export default function Location() {
   const mapStyle = [
@@ -180,6 +183,13 @@ export default function Location() {
     },
   ];
 
+  const origin = { latitude: 37.78825, longitude: -122.4324 };
+
+  const destination = { latitude: 37.78825, longitude: -122.4929 };
+
+  
+  console.log(process.env);
+
   return (
     <View style={{ flex: 1 }}>
       <MapView
@@ -191,7 +201,52 @@ export default function Location() {
           latitudeDelta: 0.0922,
           longitudeDelta: 0.0421,
         }}
-      />
+      >
+        {/* <MapViewDirections
+          origin={origin}
+          destination={destination}
+          apikey={process.env.GOOGLE_API_KEY}
+          strokeWidth={5}
+          strokeColor={colors.secondary}
+        /> */}
+        {/* <Marker style={{top:100}} image={require('../../assets/markers.png')} coordinate={origin} title='origin' /> */}
+        <Marker
+          style={{ alignItems: "center", justifyContent: "center" }}
+          coordinate={origin}
+          title="origin"
+        >
+          <View
+            {...Marker}
+            style={{
+              backgroundColor: colors.grad1,
+              borderWidth: 2,
+              borderColor: colors.primary,
+              borderRadius: 50,
+              width: 10,
+              height: 10,
+              alignSelf: "center",
+            }}
+          ></View>
+        </Marker>
+        <Marker
+          style={{ alignItems: "center", justifyContent: "center" }}
+          coordinate={destination}
+          title="destination"
+        >
+          <View
+            {...Marker}
+            style={{
+              backgroundColor: colors.grad1,
+              borderWidth: 2,
+              borderColor: colors.primary,
+              borderRadius: 50,
+              width: 15,
+              height: 15,
+              alignSelf: "center",
+            }}
+          ></View>
+        </Marker>
+      </MapView>
     </View>
   );
 }

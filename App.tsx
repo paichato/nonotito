@@ -9,6 +9,7 @@ import {
 import Routes from "./src/routes";
 import AppLoader from "./src/components/appLoader";
 import Home from "./src/screens/Home";
+// import "dotenv/config";
 
 export default function App() {
   let [fontsLoaded] = useFonts({
