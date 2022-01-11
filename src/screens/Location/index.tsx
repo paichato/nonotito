@@ -2,10 +2,23 @@ import React from "react";
 import { View, Text } from "react-native";
 import MapView, { Marker } from "react-native-maps";
 import MapViewDirections from "react-native-maps-directions";
+import ButtonWrapper from "../../components/ButtonWrapper";
+import MainHeader from "../../components/MainHeader";
 import colors from "../../lib/colors";
+import { Txt } from "../Opening/styles";
+import { DeliverGuyContainer, DeliverGuyImage, MainView } from "./styles";
+import BackIcon from "../../assets/back.svg";
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from "react-native-responsive-screen";
+import Phone from "../../assets/phone.svg";
+import Done from "../../assets/done.svg";
+import Undone from "../../assets/undone.svg";
+import Line from "../../assets/line.svg";
 // import { GOOGLE_API_KEY } from "react-native-dotenv";
 
-export default function Location() {
+export default function Location({ navigation }) {
   const mapStyle = [
     {
       featureType: "water",
@@ -183,17 +196,52 @@ export default function Location() {
     },
   ];
 
+  const handleGoBack = () => {
+    navigation.goBack();
+  };
+
   const origin = { latitude: 37.78825, longitude: -122.4324 };
 
   const destination = { latitude: 37.78825, longitude: -122.4929 };
 
-  
   console.log(process.env);
+
+  const StatusItem=({title,desc, line, done})=>{
+      return(
+          <>
+        <View style={{ flexDirection: "row", width: "100%", alignItems: 'center', marginLeft:wp('10%') }}>
+        {done ? <Done /> : <Undone/>}
+        <View style={{marginLeft:wp('5%')}}>
+          <Txt margin bold color="blue" position="left">
+            {title}
+          </Txt>
+          <Txt margin color="gray" position="left">
+            {desc}
+          </Txt>
+        </View>
+      </View>
+      {line && <View style={{marginLeft:wp('15%')}}>
+         <Line /> 
+      </View>}
+      </>
+      )
+  }
 
   return (
     <View style={{ flex: 1 }}>
+      <MainHeader bg>
+        <ButtonWrapper action={handleGoBack} Icon={<BackIcon />} />
+        <Txt
+          // margin
+          bold
+          color={"blue"}
+        >
+          Rastreio
+        </Txt>
+        <Txt margin> </Txt>
+      </MainHeader>
       <MapView
-        style={{ height: "50%" }}
+        style={{ height: "30%" }}
         customMapStyle={mapStyle}
         initialRegion={{
           latitude: 37.78825,
@@ -247,6 +295,46 @@ export default function Location() {
           ></View>
         </Marker>
       </MapView>
+      <MainView>
+        <DeliverGuyContainer>
+          <DeliverGuyImage
+            style={{ height: hp("8%"), width: hp("8%") }}
+            source={require("../../assets/deliver.png")}
+          />
+          <View style={{ width: "40%" }}>
+            <Txt position="left" margin bold color="white">
+              Lucas Silva
+            </Txt>
+            <Txt
+              position="left"
+              margin
+              color="gray"
+              style={{ color: colors.unselected_light }}
+            >
+              Entregador
+            </Txt>
+          </View>
+          <ButtonWrapper action={handleGoBack} Icon={<Phone />} />
+        </DeliverGuyContainer>
+        <View style={{height:10}} ></View>
+            <StatusItem done title='Pedido aceito pelo Restaurante' desc='Seu pedido foi aceito' line/>
+            <StatusItem title='Preparando pedido' desc='Seu pedido está sendo preparado' line/>
+            <StatusItem title='Saiu para Entrega' desc='Seu pedido saiu para entrega' line/>
+            <StatusItem title='Seu pedido chegou!' desc='Aproveite'/>
+        {/* <View style={{marginLeft:wp('15%')}}>
+           <Line /> 
+        </View> */}
+        
+        {/* <View style={{ alignItems: "center" }}>
+          <Done />
+          <Line />
+          <Done />
+          <Line />
+          <Done />
+          <Line />
+          <Undone />
+        </View> */}
+      </MainView>
     </View>
   );
 }
