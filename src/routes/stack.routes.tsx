@@ -9,6 +9,7 @@ import Cart from "../screens/Cart";
 import { createSharedElementStackNavigator } from "react-navigation-shared-element";
 import CartDetails from "../screens/CartDetails";
 import CartPayment from "../screens/CartPayment";
+import Location from "../screens/Location";
 
 const { Screen, Navigator } = createNativeStackNavigator();
 const Stack = createSharedElementStackNavigator();
@@ -46,7 +47,7 @@ export default function StackRoutes() {
       initialRouteName="Opening"
       screenOptions={{ headerShown: false }}
     >
-      <Stack.Screen name="Opening" component={Opening} />
+      {/* <Stack.Screen name="Opening" component={Opening} />
       <Stack.Screen name="Register" component={Register} />
       <Stack.Screen name="Home-Tab" component={AppRoutes} />
       <Stack.Screen
@@ -61,7 +62,8 @@ export default function StackRoutes() {
         // screenOptions={() => options}
       />
       <Stack.Screen name="Cart" component={Cart} />
-      <Stack.Screen name="CartPayment" component={CartPayment} />
+      <Stack.Screen name="CartPayment" component={CartPayment} /> */}
+      <Stack.Screen name="Location" component={Location} />
     </Stack.Navigator>
   );
 }
