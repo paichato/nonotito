@@ -1,6 +1,6 @@
 import React from "react";
-import { View, Text } from "react-native";
-import MapView, { Marker , PROVIDER_GOOGLE } from "react-native-maps";
+import { View, Text, ActivityIndicator } from "react-native";
+import MapView, { Marker, PROVIDER_GOOGLE } from "react-native-maps";
 import MapViewDirections from "react-native-maps-directions";
 import ButtonWrapper from "../../components/ButtonWrapper";
 import MainHeader from "../../components/MainHeader";
@@ -16,6 +16,8 @@ import Phone from "../../assets/phone.svg";
 import Done from "../../assets/done.svg";
 import Undone from "../../assets/undone.svg";
 import Line from "../../assets/line.svg";
+import * as Animatable from "react-native-animatable";
+import config from "../../../config";
 // import { GOOGLE_API_KEY } from "react-native-dotenv";
 
 export default function Location({ navigation }) {
@@ -204,28 +206,56 @@ export default function Location({ navigation }) {
 
   const destination = { latitude: 37.78825, longitude: -122.4929 };
 
-  console.log(process.env);
+  // console.log(config.GOOGLE_API_KEY);
+  console.log(process.env.GOOGLE_API_KEY);
+  const keys = process.env.GOOGLE_API_KEY+"-jEM";
 
-  const StatusItem=({title,desc, line, done})=>{
-      return(
-          <>
-        <View style={{ flexDirection: "row", width: "100%", alignItems: 'center', marginLeft:wp('10%') }}>
-        {done ? <Done /> : <Undone/>}
-        <View style={{marginLeft:wp('5%')}}>
-          <Txt margin bold color="blue" position="left">
-            {title}
-          </Txt>
-          <Txt margin color="gray" position="left">
-            {desc}
-          </Txt>
-        </View>
-      </View>
-      {line && <View style={{marginLeft:wp('15%')}}>
-         <Line /> 
-      </View>}
+  const StatusItem = ({ title, desc, line, done, delay, loading }) => {
+    return (
+      <>
+        <Animatable.View
+          useNativeDriver
+          delay={delay}
+          duration={2000}
+          animation="zoomInDown"
+          style={{
+            flexDirection: "row",
+            width: "100%",
+            alignItems: "center",
+            marginLeft: wp("10%"),
+          }}
+        >
+          {loading ? (
+            <ActivityIndicator color={colors.primary} size="small" />
+          ) : done ? (
+            <Done />
+          ) : (
+            <Undone />
+          )}
+          <View style={{ marginLeft: wp("5%") }}>
+            <Txt margin bold color="blue" position="left">
+              {title}
+            </Txt>
+            <Txt margin color="gray" position="left">
+              {desc}
+            </Txt>
+          </View>
+        </Animatable.View>
+        {line && (
+          <View style={{ marginLeft: wp("15%") }}>
+            <Animatable.View
+              duration={5000}
+              useNativeDriver
+              delay={delay}
+              animation="fadeIn"
+            >
+              <Line />
+            </Animatable.View>
+          </View>
+        )}
       </>
-      )
-  }
+    );
+  };
 
   return (
     <View style={{ flex: 1 }}>
@@ -251,13 +281,13 @@ export default function Location({ navigation }) {
           longitudeDelta: 0.0421,
         }}
       >
-        {/* <MapViewDirections
+        <MapViewDirections
           origin={origin}
           destination={destination}
-          apikey={process.env.GOOGLE_API_KEY}
+          apikey={keys}
           strokeWidth={5}
           strokeColor={colors.secondary}
-        /> */}
+        />
         {/* <Marker style={{top:100}} image={require('../../assets/markers.png')} coordinate={origin} title='origin' /> */}
         <Marker
           style={{ alignItems: "center", justifyContent: "center" }}
@@ -297,35 +327,59 @@ export default function Location({ navigation }) {
         </Marker>
       </MapView>
       <MainView>
-        <DeliverGuyContainer>
-          <DeliverGuyImage
-            style={{ height: hp("8%"), width: hp("8%") }}
-            source={require("../../assets/deliver.png")}
-          />
-          <View style={{ width: "40%" }}>
-            <Txt position="left" margin bold color="white">
-              Lucas Silva
-            </Txt>
-            <Txt
-              position="left"
-              margin
-              color="gray"
-              style={{ color: colors.unselected_light }}
-            >
-              Entregador
-            </Txt>
-          </View>
-          <ButtonWrapper action={handleGoBack} Icon={<Phone />} />
-        </DeliverGuyContainer>
-        <View style={{height:10}} ></View>
-            <StatusItem done title='Pedido aceito pelo Restaurante' desc='Seu pedido foi aceito' line/>
-            <StatusItem title='Preparando pedido' desc='Seu pedido está sendo preparado' line/>
-            <StatusItem title='Saiu para Entrega' desc='Seu pedido saiu para entrega' line/>
-            <StatusItem title='Seu pedido chegou!' desc='Aproveite'/>
+        <Animatable.View
+          useNativeDriver
+          // delay={delay}
+          duration={2000}
+          animation="flipInX"
+        >
+          <DeliverGuyContainer>
+            <DeliverGuyImage
+              style={{ height: hp("8%"), width: hp("8%") }}
+              source={require("../../assets/deliver.png")}
+            />
+            <View style={{ width: "40%" }}>
+              <Txt position="left" margin bold color="white">
+                Lucas Silva
+              </Txt>
+              <Txt
+                position="left"
+                margin
+                color="gray"
+                style={{ color: colors.unselected_light }}
+              >
+                Entregador
+              </Txt>
+            </View>
+            <ButtonWrapper action={handleGoBack} Icon={<Phone />} />
+          </DeliverGuyContainer>
+        </Animatable.View>
+        <View style={{ height: 10 }}></View>
+        <StatusItem
+          done
+          title="Pedido aceito pelo Restaurante"
+          desc="Seu pedido foi aceito"
+          line
+        />
+        <StatusItem
+          delay={300}
+          done
+          title="Preparando pedido"
+          desc="Seu pedido está sendo preparado"
+          line
+        />
+        <StatusItem
+          delay={600}
+          loading
+          title="Saiu para Entrega"
+          desc="Seu pedido saiu para entrega"
+          line
+        />
+        <StatusItem delay={800} title="Seu pedido chegou!" desc="Aproveite" />
         {/* <View style={{marginLeft:wp('15%')}}>
            <Line /> 
         </View> */}
-        
+
         {/* <View style={{ alignItems: "center" }}>
           <Done />
           <Line />

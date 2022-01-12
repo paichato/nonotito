@@ -68,6 +68,7 @@ export const CategoryContainer=styled.View`
 flex-direction: row;
 align-items: center;
 justify-content:space-between;
+width: ${wp('90%')}px;
 `
 
 export const CategoryWrapper=styled(TouchableOpacity)`
@@ -108,7 +109,7 @@ border-radius:16px;
 `
 
 export const PizzaDetails=styled.View`
-width: 30%;
+width: 35%;
 `
 
 export const PizzaAddButton=styled(TouchableOpacity)`

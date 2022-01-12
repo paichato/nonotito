@@ -18,11 +18,12 @@
         "svg"
       ]
     },
-    "name": "nonotito",
+    "name": "Nonotito",
     "slug": "nonotito",
     "version": "1.0.0",
     "assetBundlePatterns": [
       "**/*"
-    ]
+    ],
+    "description": ""
   }
 }
