@@ -12,7 +12,7 @@ flex:1;
 `
 
 export const MainContainer=styled.View`
-height: ${hp('80%')}px;
+height: ${hp('75%')}px;
 padding-left: ${wp('5%')}px;
 padding-right: ${wp('5%')}px;
 width: 100%;

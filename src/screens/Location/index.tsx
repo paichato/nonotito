@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, ActivityIndicator } from "react-native";
+import { View, Text, ActivityIndicator, ScrollView } from "react-native";
 import MapView, { Marker, PROVIDER_GOOGLE } from "react-native-maps";
 import MapViewDirections from "react-native-maps-directions";
 import ButtonWrapper from "../../components/ButtonWrapper";
@@ -281,13 +281,15 @@ export default function Location({ navigation }) {
           longitudeDelta: 0.0421,
         }}
       >
-        <MapViewDirections
-          origin={origin}
-          destination={destination}
-          apikey={keys}
-          strokeWidth={5}
-          strokeColor={colors.secondary}
-        />
+       
+          <MapViewDirections
+            origin={origin}
+            destination={destination}
+            apikey={keys}
+            strokeWidth={5}
+            strokeColor={colors.secondary}
+          />
+       
         {/* <Marker style={{top:100}} image={require('../../assets/markers.png')} coordinate={origin} title='origin' /> */}
         <Marker
           style={{ alignItems: "center", justifyContent: "center" }}
@@ -355,6 +357,7 @@ export default function Location({ navigation }) {
           </DeliverGuyContainer>
         </Animatable.View>
         <View style={{ height: 10 }}></View>
+        <ScrollView style={{ height:'100%'}} showsVerticalScrollIndicator={false} contentContainerStyle={{height:'120%'}}>
         <StatusItem
           done
           title="Pedido aceito pelo Restaurante"
@@ -376,6 +379,8 @@ export default function Location({ navigation }) {
           line
         />
         <StatusItem delay={800} title="Seu pedido chegou!" desc="Aproveite" />
+        </ScrollView>
+       
         {/* <View style={{marginLeft:wp('15%')}}>
            <Line /> 
         </View> */}

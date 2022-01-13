@@ -7,7 +7,7 @@ import { TouchableOpacity } from "react-native";
 import colors from "../../lib/colors";
 
 export const MainView=styled.View`
-height:${hp('45%')}px;
+min-height:${hp('45%')}px;
 width: ${wp('100%')}px;
 border-top-right-radius: 10px;
 border-top-left-radius:10px;

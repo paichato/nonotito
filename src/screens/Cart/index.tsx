@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, Text, ScrollView, Image, TouchableOpacity } from "react-native";
+import { View, Text, ScrollView, Image, TouchableOpacity, Platform } from "react-native";
 import ButtonWrapper from "../../components/ButtonWrapper";
 import MainHeader from "../../components/MainHeader";
 import { AddMoreContainer, AddMoreWrapper, Banner, BannerLeft, Container, CupomContainer, Divider, Footer, FooterButton, MainContainer, PaymentLeft, PaymentRight, PaymentTypeWrapper, PizzaDetails, PizzaImage, PizzaWrapper, SubTotalWrapper } from "./styles";
@@ -16,6 +16,7 @@ import { SharedElement } from "react-navigation-shared-element";
 export default function Cart({navigation}) {
 
   const [selectedPayment,setSelectedPayment]=useState();
+  const [plat,setPlat]=useState(Platform.OS==='ios' ? 'ios' :'android');
 
   const handleGoBack = () => {
     navigation.goBack();
@@ -239,8 +240,8 @@ export default function Cart({navigation}) {
         </TouchableOpacity>
         </ScrollView>
       </MainContainer>
-      <Footer style={{elevation:10}}>
-        <FooterButton  >
+      <Footer  style={[{elevation:10,bottom:0 }]}>
+        <FooterButton style={[Platform.OS==='ios' && { marginBottom:15}]} >
           <Txt color='white' margin >Continuar</Txt>
         </FooterButton>
       </Footer>
