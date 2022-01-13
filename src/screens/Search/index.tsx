@@ -265,7 +265,7 @@ export default function Search() {
               >
                 <PizzaWrapper onPress={() => handleItemSelect(item.id)} key={item}>
                 <SharedElement
-                    id={item.id}
+                    id={`item.${item.id}.${item.name}`}
                     style={{ width: "25%" }}
                     
                   >

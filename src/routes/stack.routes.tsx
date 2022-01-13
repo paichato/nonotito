@@ -41,7 +41,7 @@ export default function StackRoutes() {
     //           }}
     //   />
     //   <Screen name="Cart" component={Cart} />
-    
+
     // </Navigator>
     <Stack.Navigator
       initialRouteName="Opening"
@@ -53,11 +53,27 @@ export default function StackRoutes() {
       <Stack.Screen
         name="PizzaDetails"
         component={PizzaDetails}
-        sharedElements={(route) => {
-          const { item } = route.params;
-          
-          
-          return [route.params.item.id];
+        screenOption={{
+          gestureEnabled: false,
+          cardStyleInterpolator: ({ current: { progress } }) => {
+            return { cardStyle: { opacity: progress } };
+          },
+          transitionSpec: {
+            open: { animation: "timing", config: { duration: 1000 } },
+            close: { animation: "timing", config: { duration: 1000 } },
+          },
+          useNativeDriver: true,
+        }}
+        sharedElements={(route, otherRoute, showing) => {
+          if (otherRoute.name === "Search" || showing) {
+            const { item } = route.params;
+            return [
+        
+                `item.${item.id}.${item.name}`,
+              
+             
+            ];
+          }
         }}
         // screenOptions={() => options}
       />

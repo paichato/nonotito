@@ -29,7 +29,7 @@ export const DetailsContainer=styled.View`
 height: ${hp('60%')}px;
 background-color:${colors.grad1}
 border-radius:30px;
-margin-top: ${hp('30%')}px;
+margin-top: ${hp('24%')}px;
 
 /* align-items:center; */
 /* align-self: flex-end; */
@@ -75,7 +75,7 @@ margin-top: ${hp('4%')}px;
 `
 export const DetailsTextContainer=styled.View`
 /* height: ${hp('10%')}px; */
-width: 70%;
+width: 100%;
 text-align:left;
 align-self: center;
 `

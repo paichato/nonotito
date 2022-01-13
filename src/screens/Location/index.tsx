@@ -208,7 +208,7 @@ export default function Location({ navigation }) {
 
   // console.log(config.GOOGLE_API_KEY);
   console.log(process.env.GOOGLE_API_KEY);
-  const keys = process.env.GOOGLE_API_KEY+"-jEM";
+  const keys = process.env.GOOGLE_API_KEY;
 
   const StatusItem = ({ title, desc, line, done, delay, loading }) => {
     return (

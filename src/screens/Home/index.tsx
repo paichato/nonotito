@@ -31,11 +31,7 @@ import colors from "../../lib/colors";
 import FilterIcon from "../../assets/filter.svg";
 import PlusIcon from "../../assets/plus.svg";
 import * as Animatable from "react-native-animatable";
-import {
-  SharedElement,
-  SharedElementTransition,
-  nodeFromRef,
-} from "react-native-shared-element";
+import { SharedElement } from "react-navigation-shared-element";
 import { useNavigation } from "@react-navigation/native";
 
 export default function Home() {
@@ -79,7 +75,7 @@ export default function Home() {
 
   const [selected, setSelected] = useState({ id: 0, selected: true });
 
-  const navigation=useNavigation();
+  const navigation = useNavigation();
 
   const handleItemSelect = (id) => {
     const selectedData = popularPizzas.filter((item) => item.id === id);
@@ -128,7 +124,7 @@ export default function Home() {
 
   return (
     <Animatable.View
-      ref={(ref) => (startAncestor = nodeFromRef(ref))}
+      // ref={(ref) => (startAncestor = nodeFromRef(ref))}
       useNativeDriver
       style={{ flex: 1 }}
       animation="fadeInUp"
@@ -156,7 +152,7 @@ export default function Home() {
               style={{ flex: 1, width: "100%" }}
               animation="fadeIn"
             >
-              <BannerImg  width={"100%"} height={"100%"} />
+              <BannerImg width={"100%"} height={"100%"} />
             </Animatable.View>
           </Banner>
         </HeaderWrapper>
@@ -226,9 +222,9 @@ export default function Home() {
                   key={item}
                 >
                   <SharedElement
-                    id={item.id}
+                    id={`item.${item.id}.${item.name}`}
                     style={{ width: "25%" }}
-                    onNode={(node) => (startNode = node)}
+                    // onNode={(node) => (startNode = node)}
                   >
                     <PizzaImage
                       style={{ resizeMode: "cover" }}
